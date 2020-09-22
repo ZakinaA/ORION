@@ -71,6 +71,10 @@
                         out.println("<td><a href ='../ServletVentes/listerLesCourriel?codeVen="+ uneVente.getId()+ "'>");
                         out.println("Lister les courriels");
                         out.println("</td>");
+                        
+                        out.println("<td><a href ='../ServletVentes/listerLesLots?codeVen="+ uneVente.getId()+ "'>");
+                        out.println("Lister les lots");
+                        out.println("</td>");
                     }
                     %>
                 </tr>

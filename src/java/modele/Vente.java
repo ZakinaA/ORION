@@ -5,6 +5,8 @@
  */
 package modele;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Zakina
@@ -15,6 +17,7 @@ public class Vente {
     private String dateDebutVente;
     private Lieu unLieu ;
     private CategVente uneCategVente;
+    ArrayList<Lot> listeLot;
     
 
     public Vente() {
@@ -32,6 +35,15 @@ public class Vente {
         this.dateDebutVente = dateDebutVente;
         this.unLieu = unLieu;
         this.uneCategVente = uneCategVente;
+    }
+
+    public Vente(int id, String nom, String dateDebutVente, Lieu unLieu, CategVente uneCategVente, ArrayList<Lot> listeLot) {
+        this.id = id;
+        this.nom = nom;
+        this.dateDebutVente = dateDebutVente;
+        this.unLieu = unLieu;
+        this.uneCategVente = uneCategVente;
+        this.listeLot = listeLot;
     }
     
 
@@ -74,7 +86,20 @@ public class Vente {
     public void setUnLieu(Lieu unLieu) {
         this.unLieu = unLieu;
     }
+
+    public ArrayList<Lot> getUnLot() {
+        return listeLot;
+    }
+
+    public void setUnLot(ArrayList<Lot> unLot) {
+        this.listeLot = listeLot;
+    }
     
-    
-    
+    public void addLot(Lot unLot){
+        
+        if (this.listeLot == null){
+            this.listeLot = new ArrayList<Lot>();                  
+        }
+         listeLot.add(unLot);
+    }
 }

@@ -24,7 +24,7 @@ import modele.CategVente;
 import modele.Client;
 import modele.Pays;
 import modele.Vente;
-
+ 
 /**
  *
  * @author Zakina

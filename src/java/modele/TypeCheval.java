@@ -46,7 +46,5 @@ public class TypeCheval {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-    
-    
+    }   
 }

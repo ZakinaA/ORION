@@ -45,6 +45,10 @@
         <url-pattern>/ServletVentes/listerLesCourriel</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletVentes</servlet-name>
+        <url-pattern>/ServletVentes/listerLesLots</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletClient</servlet-name>
         <url-pattern>/ServletClient/ajouterClient</url-pattern>
     </servlet-mapping>

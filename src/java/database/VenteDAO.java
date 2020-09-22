@@ -13,9 +13,11 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modele.CategVente;
+import modele.Cheval;
 import modele.Client;
 import modele.Courriel;
 import modele.Lieu;
+import modele.Lot;
 import modele.Pays;
 import modele.Vente;
 
@@ -41,8 +43,10 @@ public class VenteDAO {
         ArrayList<Vente> lesVentes = new  ArrayList<Vente>();
         try
         {
-            //preparation de la requete     
+            //preparation de la requete 
+            //System.out.println("req avant" + requete);
             requete=connection.prepareStatement("select distinct * from vente, CategVente, Lieu where codeCategVente=code and idLieu = Lieu.id order by dateDebut desc");          
+            //System.out.println("req apres" + requete);
             //executer la requete
             rs=requete.executeQuery();
             
@@ -161,4 +165,70 @@ public class VenteDAO {
         }
         return lesCourriel ;    
     }     
+    
+    public static ArrayList<Lot>  getLesLots(Connection connection, String codeVen){      
+        ArrayList<Lot> lesLots = new  ArrayList<Lot>();
+        try
+        {
+            //preparation de la requete     
+            //codeVen="210817";
+            requete=connection.prepareStatement("SELECT DISTINCT l.*, c.nom FROM lot l, vente v, cheval c where l.idVente=v.id and l.idCheval = c.id and v.id = ? ");
+            requete.setString(1, codeVen);
+            //executer la requete
+            rs=requete.executeQuery();
+             
+            //On hydrate l'objet métier Client avec les résultats de la requête
+            while ( rs.next() ) {  
+                
+                
+                
+                Lot unLot = new Lot();
+                unLot.setId(rs.getInt("id"));
+                unLot.setPrixDepart(rs.getString("prixDepart"));
+                
+                Cheval unCheval = new Cheval();
+                unCheval.setNom(rs.getString("nom"));
+                unLot.setUnCheval(unCheval);
+                
+                lesLots.add(unLot);
+            }
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return lesLots ;    
+    }
+    
+    /*public static ArrayList<Cheval>  getLesChevaux(Connection connection, String codeLot){      
+        ArrayList<Cheval> LesChevaux = new  ArrayList<Cheval>();
+        try
+        {
+            //preparation de la requete     
+            //codeVen="210817";
+            requete=connection.prepareStatement("SELECT DISTINCT l.* FROM lot l, vente v where l.idVente=v.id and v.id = ? ");
+            requete.setString(1, codeLot);
+            //executer la requete
+            rs=requete.executeQuery();
+             
+            //On hydrate l'objet métier Client avec les résultats de la requête
+            while ( rs.next() ) {  
+                
+                
+                
+                Cheval unCheval = new Cheval();
+                unCheval.setId(rs.getInt("id"));
+                
+                
+                LesChevaux.add(unCheval);
+            }
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return LesChevaux ;    
+    }*/
 }
