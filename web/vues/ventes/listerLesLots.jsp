@@ -11,7 +11,7 @@
 <html>
     </head>
     <body>
-        <h1>LISTE DES VENTES</h1>
+        <h1>LISTE DES Lots</h1>
          <%
         ArrayList<Lot> lesLots = (ArrayList)request.getAttribute("pLesLots");
         %>
@@ -44,10 +44,10 @@
                         out.println(unLot.getUnCheval().getNom());
                         out.println("</td>");
                         
-                        /*out.println("<td><a href ='../ServletVentes/listerLesChevaux?codeLot="+ unLot.getId()+ "'>");
-                        out.println("Lister les chevaux");
+                        out.println("<td><a href ='../ServletVentes/listerLesChevaux?codeLot="+ unLot.getId()+ "'>");
+                        out.println("Liste d'information sur le cheval");
                         out.println("</td>");
-                        */
+                        
                     }
                     %>
                 </tr>

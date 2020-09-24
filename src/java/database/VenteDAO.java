@@ -19,6 +19,7 @@ import modele.Courriel;
 import modele.Lieu;
 import modele.Lot;
 import modele.Pays;
+import modele.TypeCheval;
 import modele.Vente;
 
 /**
@@ -201,15 +202,16 @@ public class VenteDAO {
         return lesLots ;    
     }
     
-    /*public static ArrayList<Cheval>  getLesChevaux(Connection connection, String codeLot){      
+    public static ArrayList<Cheval>  getLesChevaux(Connection connection, String codeLot){      
         ArrayList<Cheval> LesChevaux = new  ArrayList<Cheval>();
         try
         {
             //preparation de la requete     
             //codeVen="210817";
-            requete=connection.prepareStatement("SELECT DISTINCT l.* FROM lot l, vente v where l.idVente=v.id and v.id = ? ");
+            requete=connection.prepareStatement("SELECT c1.id, c1.nom, c1.sexe, c1.numSire, c1.idTypeCheval, c2.nom as PereCheval, c3.nom as MereCheval, t.libelle, client.nom as NomProp, client.prenom as PrenomProp FROM cheval as c1, lot l, typecheval t, cheval c2, cheval c3, client WHERE c1.pere = c2.id and c1.mere = c3.id and l.idCheval = c1.id and c1.idTypeCheval = t.id and client.id = c1.idClient and l.id = ? ");
             requete.setString(1, codeLot);
             //executer la requete
+            System.out.println(requete);
             rs=requete.executeQuery();
              
             //On hydrate l'objet métier Client avec les résultats de la requête
@@ -219,9 +221,30 @@ public class VenteDAO {
                 
                 Cheval unCheval = new Cheval();
                 unCheval.setId(rs.getInt("id"));
+                unCheval.setNom(rs.getString("nom"));
+                unCheval.setSexe(rs.getString("sexe"));
+                unCheval.setNumSire(rs.getString("numSire"));
                 
                 
+                TypeCheval unTypeCheval = new TypeCheval();
+                unTypeCheval.setLibelle(rs.getString("libelle"));
+                unCheval.setUnTypeCheval(unTypeCheval);
+                
+                Cheval unChevalPere = new Cheval();
+                unChevalPere.setNom(rs.getString("PereCheval"));
+                
+                Cheval unChevalMere = new Cheval();
+                unChevalMere.setNom(rs.getString("MereCheval"));
+                
+                Client unClient = new Client();
+                unClient.setNom(rs.getString("NomProp"));
+                unClient.setPrenom(rs.getString("PrenomProp"));
+                unCheval.setUnClient(unClient);
+                
+                unCheval.setUnChevalPere(unChevalPere);
+                unCheval.setUnChevalMere(unChevalMere);
                 LesChevaux.add(unCheval);
+                
             }
         }   
         catch (SQLException e) 
@@ -230,5 +253,5 @@ public class VenteDAO {
             //out.println("Erreur lors de l’établissement de la connexion");
         }
         return LesChevaux ;    
-    }*/
+    }
 }

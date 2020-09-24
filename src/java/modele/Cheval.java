@@ -19,7 +19,10 @@ public class Cheval {
     private String numSire;
     private String dateNaissance;
     private TypeCheval unTypeCheval;
+    private Client unClient;
     ArrayList<Lot> listeLot;
+    Cheval unChevalPere;
+    Cheval unChevalMere;
 
     public Cheval() {
     }
@@ -48,6 +51,17 @@ public class Cheval {
         this.numSire = numSire;
         this.dateNaissance = dateNaissance;
         this.unTypeCheval = unTypeCheval;
+        this.listeLot = listeLot;
+    }
+
+    public Cheval(int id, String nom, String sexe, String numSire, String dateNaissance, TypeCheval unTypeCheval, Client unClient, ArrayList<Lot> listeLot) {
+        this.id = id;
+        this.nom = nom;
+        this.sexe = sexe;
+        this.numSire = numSire;
+        this.dateNaissance = dateNaissance;
+        this.unTypeCheval = unTypeCheval;
+        this.unClient = unClient;
         this.listeLot = listeLot;
     }
 
@@ -114,5 +128,29 @@ public class Cheval {
 
     public void setListeLot(ArrayList<Lot> listeLot) {
         this.listeLot = listeLot;
+    }
+
+    public Client getUnClient() {
+        return unClient;
+    }
+
+    public void setUnClient(Client unClient) {
+        this.unClient = unClient;
+    }
+
+    public Cheval getUnChevalPere() {
+        return unChevalPere;
+    }
+
+    public void setUnChevalPere(Cheval unChevalPere) {
+        this.unChevalPere = unChevalPere;
+    }
+    
+    public Cheval getUnChevalMere() {
+        return unChevalMere;
+    }
+
+    public void setUnChevalMere(Cheval unChevalMere) {
+        this.unChevalMere = unChevalMere;
     }
 }

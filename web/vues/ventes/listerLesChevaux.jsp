@@ -22,7 +22,12 @@
                     <th>Nom</th>
                     <th>Sexe</th>
                     <th>Numero Sire</th>
-                    <th>Prix de Depart</th>     
+                    <th>Type de cheval</th>
+                    <th>Nom du propiétaire</th>
+                    <th>Prenom du propiétaire</th>
+                    <th>Cheval Pere</th>
+                    <th>Cheval Mere</th>
+                    
             <br>
             <br>
                 </tr>
@@ -51,8 +56,24 @@
                         out.println("</td>");
                         
                         out.println("<td>");
-                        out.println(unCheval.getUnTypeCheval());
+                        out.println(unCheval.getUnTypeCheval().getLibelle());
                         out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(unCheval.getUnClient().getNom());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(unCheval.getUnClient().getPrenom());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(unCheval.getUnChevalPere().getNom());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(unCheval.getUnChevalMere().getNom());
+                        out.println("</td>");  
                     }
                     %>
                 </tr>
