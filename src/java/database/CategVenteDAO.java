@@ -5,12 +5,14 @@
  */
 package database;
 
+import static database.ClientDAO.requete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modele.CategVente;
+import modele.Client;
 /**
  *
  * @author Zakina
@@ -46,5 +48,24 @@ public class CategVenteDAO {
         }
         return lesCategVentes ;    
     } 
-    
+     
+     public static CategVente ajouterCategVente(Connection connection, CategVente unCategVente){
+        try
+        {
+           
+            requete=connection.prepareStatement("INSERT INTO CategVente ( code, libelle)\n" +
+                    "VALUES (?,?)");
+            requete.setString(1, unCategVente.getCode());
+            requete.setString(2, unCategVente.getLibelle());
+
+           /* Exécution de la requête */
+            requete.executeUpdate();   
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unCategVente ;    
+    }
 }

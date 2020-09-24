@@ -8,8 +8,7 @@ package servlets;
 import database.CategVenteDAO;
 import database.ClientDAO;
 import database.PaysDAO;
-import database.Utilitaire;
-import database.VenteDAO;
+import formulaires.CategVenteForm;
 import formulaires.ClientForm;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,16 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 import modele.CategVente;
 import modele.Client;
 import modele.Pays;
-import modele.Vente;
- 
+
 /**
  *
- * @author Zakina
- * Servlet Client permettant d'excéuter les fonctionnalités relatives au clients
- * Fonctionnalités implémentées :
- *      ajouter un nouveau client
+ * @author sio2
  */
-public class ServletClient extends HttpServlet {
+public class ServletAdmin extends HttpServlet {
     
     Connection connection ;
       
@@ -61,10 +56,10 @@ public class ServletClient extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletClient</title>");            
+            out.println("<title>Servlet ServletAdmin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletClient at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletAdmin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -82,19 +77,9 @@ public class ServletClient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+       // processRequest(request, response);                   
+            this.getServletContext().getRequestDispatcher("/vues/categ/categVenteAjouter.jsp" ).forward( request, response );
         
-       String url = request.getRequestURI();
-       
-       if(url.equals("/EquidaWeb20/ServletClient/ajouterClient"))
-        {                   
-            ArrayList<Pays> lesPays = PaysDAO.getLesPays(connection);
-            request.setAttribute("pLesPays", lesPays);
-            
-            ArrayList<CategVente> lesCategVentes = CategVenteDAO.getLesCategVentes(connection);
-            request.setAttribute("pLesCategVente", lesCategVentes);
-            this.getServletContext().getRequestDispatcher("/vues/client/clientAjouter.jsp" ).forward( request, response );
-        }
     }
 
     /**
@@ -105,36 +90,25 @@ public class ServletClient extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+    @Override   
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                
          /* Préparation de l'objet formulaire */
-        ClientForm form = new ClientForm();
+        CategVenteForm form = new CategVenteForm();
 		
         /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
-        Client unClient = form.ajouterClient(request);
+        CategVente unCategVente = form.ajouterCategVente(request);
         
         /* Stockage du formulaire et de l'objet dans l'objet request */
         request.setAttribute( "form", form );
-        request.setAttribute( "pClient", unClient );
+        request.setAttribute( "pCategVente", unCategVente );
 		
         if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-            ClientDAO.ajouterClient(connection, unClient);
-            this.getServletContext().getRequestDispatcher("/vues/client/clientConsulter.jsp" ).forward( request, response );
-        }
-        else
-        { 
-		// il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
-            ArrayList<Pays> lesPays = PaysDAO.getLesPays(connection);
-            request.setAttribute("pLesPays", lesPays);
-            
-            ArrayList<CategVente> lesCategVentes = CategVenteDAO.getLesCategVentes(connection);
-            request.setAttribute("pLesCategVente", lesCategVentes);
-           this.getServletContext().getRequestDispatcher("/vues/client/clientAjouter.jsp" ).forward( request, response );
-        }
-    
+            CategVenteDAO.ajouterCategVente(connection, unCategVente);
+            this.getServletContext().getRequestDispatcher("/vues/categ/categVenteConsulter.jsp" ).forward( request, response );
+        }    
     }
 
     /**
@@ -146,23 +120,5 @@ public class ServletClient extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
- public void destroy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
-    {
-        try
-        {
-            //fermeture
-            System.out.println("Connexion fermée");
-        }
-        catch (Exception e) 
-        {
-            e.printStackTrace();
-            System.out.println("Erreur lors de l’établissement de la connexion");
-        }
-        finally
-        {
-            //Utilitaire.fermerConnexion(rs);
-            //Utilitaire.fermerConnexion(requete);
-            Utilitaire.fermerConnexion(connection);
-        }
-    }
+
 }
