@@ -132,4 +132,14 @@ public class Client {
         }
         lesCategVentes.add(uneCategVente);
     }
+    
+    public int getNbCategVente(){
+        return lesCategVentes.size();
+    }
+    
+    
+    int i; /*
+    public int getNbCategVenteClient(){
+        while(lesCateg)  ;
+    } */
 }

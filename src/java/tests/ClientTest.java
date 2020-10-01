@@ -5,6 +5,7 @@
  */
 package tests;
 
+import modele.CategVente;
 import modele.Client;
 import modele.Pays;
 
@@ -20,7 +21,14 @@ public class ClientTest {
         unClient.setUnPays(new Pays("FRA", "FRANCE"));    
         System.out.println(unClient.toString());
         System.out.println(unClient.getNom() + "  " + unClient.getUnPays().getNom());
-  
+        
+        CategVente unCategVente1 = new CategVente("AUT", "Vente d'automne");
+        CategVente unCategVente2 = new CategVente("ELVG", "Vente d'élevage");
+        CategVente unCategVente3 = new CategVente("ETE", "Vente d'été");
+        
+        unClient.addUneCategVente(unCategVente3);
+        unClient.addUneCategVente(unCategVente2);
+        unClient.addUneCategVente(unCategVente1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+        System.out.println("Le client " + unClient.getNom() + " est inscrit à " + unClient.getNbCategVente() + " vente");
     }
-    
-}
+ }

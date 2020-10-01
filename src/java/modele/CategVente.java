@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +15,7 @@ package modele;
 public class CategVente {
     private String code;
     private String libelle ;
+    ArrayList<Vente> listerLesVentes;
 
     public CategVente() {
     }
@@ -37,6 +40,12 @@ public class CategVente {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
-    
-    
+
+    public ArrayList<Vente> getListerLesVentes() {
+        return listerLesVentes;
+    }
+
+    public void setListerLesVentes(ArrayList<Vente> listerLesVentes) {
+        this.listerLesVentes = listerLesVentes;
+    } 
 }

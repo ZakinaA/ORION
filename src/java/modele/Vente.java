@@ -18,6 +18,7 @@ public class Vente {
     private Lieu unLieu ;
     private CategVente uneCategVente;
     ArrayList<Lot> listeLot;
+    ArrayList<Courriel> lesCourriels;
     
 
     public Vente() {
@@ -101,5 +102,17 @@ public class Vente {
             this.listeLot = new ArrayList<Lot>();                  
         }
          listeLot.add(unLot);
+    }
+    
+    public void addCourriel(Courriel unCourriel){
+        
+        if (this.lesCourriels == null){
+            this.lesCourriels = new ArrayList<Courriel>();                  
+        }
+         lesCourriels.add(unCourriel);
+    }
+    
+    public int getNbCourriels(){
+        return lesCourriels.size();
     }
 }

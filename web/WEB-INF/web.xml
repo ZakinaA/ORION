@@ -32,6 +32,10 @@
         <servlet-name>ServletAdmin</servlet-name>
         <servlet-class>servlets.ServletAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCheval</servlet-name>
+        <servlet-class>servlets.ServletCheval</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletVentes</servlet-name>
         <url-pattern>/ServletVentes</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>ServletAdmin</servlet-name>
         <url-pattern>/ServletAdmin/ajouterCategVente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCheval</servlet-name>
+        <url-pattern>/ServletCheval/ajouterCheval</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
