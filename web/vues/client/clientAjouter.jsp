@@ -47,30 +47,28 @@
                 
                 <%-- Champ Liste des pays --%>
                 <label for="pays">Pays : </label>
-                <input list="listePays" name="pays" id="choix_pays">
-               
-                <datalist id="codePays">
+                <select class="form-control" id="codePays" name ="pays">
                     <%
                         ArrayList<Pays> lesPays = (ArrayList)request.getAttribute("pLesPays");
                         for (int i=0; i<lesPays.size();i++){
                             Pays p = lesPays.get(i);
                             out.println("<option value='" + p.getCode()+"'>" + p.getNom()+"</option>" );
-                        }
+                        } 
                     %>
-                </datalist>
+                </select>
                 </br>            
                 
-                <label for="categVente">Categorie Vente : </label>
-                <select name="categVente" size="5" multiple>
+                <label for="categVente">Categorie Vente : </label><br>
                 <%
                         ArrayList<CategVente> lesCategVente = (ArrayList)request.getAttribute("pLesCategVente");
                         for (int i=0; i<lesCategVente.size();i++){
                             CategVente cv = lesCategVente.get(i);
-                            out.println("<option value ='" + cv.getCode() + "'>" + cv.getLibelle() + "</option>"); 
-                           
+                            //out.println("<option value ='" + cv.getCode() + "'>" + cv.getLibelle() + "</option>"); 
+                            out.println("<input type='checkbox' id='cb" + i + "' name='categVente' value='" + cv.getCode() + "'>" + cv.getLibelle()); 
+                            //out.println(cv.getLibelle()); 
+                            out.println("</label></br>");
                         }
                     %>
-                </select></br>
                 
                 
                 
@@ -80,9 +78,7 @@
                         ArrayList<CategVente> lesCategVente = (ArrayList)request.getAttribute("pLesCategVente");
                         for (int i=0; i<lesCategVente.size();i++){
                             CategVente cv = lesCategVente.get(i);
-                            out.println("<input type='checkbox' id='cb" + i + "' name='" + cv.getCode() + "'>"); 
-                            out.println(cv.getLibelle()); 
-                            out.println("</label></br>");
+                            
                         }
                     %>
                     </br>
