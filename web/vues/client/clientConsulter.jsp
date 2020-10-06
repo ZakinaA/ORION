@@ -12,28 +12,39 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Consultation CLient</title>
     </head>
-    <body>
-        <h1>Infos clients</h1>
-        
+    <body>        
          <%
         Client unClient = (Client)request.getAttribute("pClient");
         %>
         
-        
-         <table class="table table-bordered table-striped table-condensed">
+        <%--
+        <table class="table table-bordered table-striped table-condensed">
             <tr><td>NOM :</td><td><% out.println(unClient.getNom());%></td></tr>
             <tr><td>PRENOM :</td><td><%  out.println(unClient.getPrenom());%></td>  </tr>
             <tr><td>ADRESSE  :</td><td><%  out.println(unClient.getRue());%></td>  </tr>
             <tr><td> CODE POSTAL  :</td><td><%  out.println(unClient.getCopos());%></td>  </tr>
-          <tr><td> VILLE  :</td><td><%  out.println(unClient.getVille());%></td>  </tr>
-          <tr><td> Catégories selectionnées</td><td>
-          <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
+            <tr><td> VILLE  :</td><td><%  out.println(unClient.getVille());%></td>  </tr>
+            <tr><td> Catégories selectionnées</td><td>
+            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
                out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
              
-          }
-          %>
-              </td></tr>
+            }
+            %>
+            </td></tr>
+        </table>--%>
+    <center>
+        <h2>Information sur le client <% out.println(unClient.getNom());%> <%  out.println(unClient.getPrenom());%></h2>
+        <p>Il est domcilier au <%  out.println(unClient.getRue());%></p>
+        <p>à <%  out.println(unClient.getVille());%>, <%  out.println(unClient.getCopos());%></p>
+        <table >Les catégories de vente qu'il l'intéresse sont : 
+            <tr><td> - </td><td>
+            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
+               out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
+             
+            }
+            %>
+            </td></tr>
         </table>
-        
+    </center>
     </body>
 </html>
