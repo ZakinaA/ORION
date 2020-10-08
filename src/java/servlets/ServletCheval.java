@@ -6,16 +6,19 @@
 package servlets;
 
 import database.ChevalDAO;
+import database.TypeChevalDAO;
 import formulaires.ChevalForm;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modele.Cheval;
+import modele.TypeCheval;
 
 /**
  *
@@ -71,9 +74,14 @@ public class ServletCheval extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        this.getServletContext().getRequestDispatcher("/vues/cheval/chevalAjouter.jsp" ).forward( request, response );
+        String url = request.getRequestURI();
+        if(url.equals("/EquidaWeb20/ServletCheval/ajouterCheval")){
+            
+            ArrayList<TypeCheval> lesTypeChevaux = TypeChevalDAO.getLesTypeChevaux(connection);
+            request.setAttribute("pLesTypeCheval", lesTypeChevaux);
+            this.getServletContext().getRequestDispatcher("/vues/cheval/chevalAjouter.jsp" ).forward( request, response );
+        }   
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *

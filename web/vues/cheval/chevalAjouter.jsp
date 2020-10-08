@@ -4,6 +4,8 @@
     Author     : sio2
 --%>
 
+<%@page import="modele.TypeCheval"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="formulaires.ChevalForm"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -68,6 +70,18 @@
                 </br>
                 <label for="numSire">Numero Sire : </label>
                 <input class="form-control" id="sire"  type="text"  name="numSire" size="30" maxlength="30">      
+                </br>
+                
+                <label for="typecheval">Type de Cheval : </label>
+                <select class="form-control" id="idTypeCheval" name ="typecheval">
+                    <%
+                        ArrayList<TypeCheval> lesTypeChevaux = (ArrayList)request.getAttribute("pLesTypeCheval");
+                        for (int i=0; i<lesTypeChevaux.size();i++){
+                            TypeCheval tc = lesTypeChevaux.get(i);
+                            out.println("<option value='" + tc.getId()+"'>" + tc.getLibelle()+"</option>" );
+                        } 
+                    %>
+                </select>
                 </br>
             <input type="submit" name="valider" id="valider" value="Valider"/>
         </form>

@@ -15,7 +15,6 @@
         <title>Consulter Cheval</title>
     </head>
     <body>
-        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,13 +54,23 @@
         Cheval unCheval = (Cheval)request.getAttribute("pCheval");
         %>
         
-        
+        <%--
          <table class="table table-bordered table-striped table-condensed">
             <tr><td>Nom :</td><td><%  out.println(unCheval.getNom());%></td></tr>
             <tr><td>Sexe :</td><td><%  out.println(unCheval.getSexe());%></td></tr>
             <tr><td>Numero Sire :</td><td><%  out.println(unCheval.getNumSire());%></td></tr>
         </table>
-        
+        --%>
+    
+    <center>
+        <h2>Information sur le cheval <%  out.println(unCheval.getNom());%></h2>
+        <p>
+            Son numéro d'identification (Sire) est le <%  out.println(unCheval.getNumSire());%>
+        </p>
+        <p>
+            C'est un <%  out.println(unCheval.getSexe());%> de race <%  out.println(unCheval.getUnTypeCheval().getLibelle());%>
+        </p>
+    </center>
     </body>
 </html>
 

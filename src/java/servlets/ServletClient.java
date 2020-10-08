@@ -9,7 +9,6 @@ import database.CategVenteDAO;
 import database.ClientDAO;
 import database.PaysDAO;
 import database.Utilitaire;
-import database.VenteDAO;
 import formulaires.ClientForm;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import modele.CategVente;
 import modele.Client;
 import modele.Pays;
-import modele.Vente;
  
 /**
  *
