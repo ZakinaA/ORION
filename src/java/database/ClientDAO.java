@@ -35,7 +35,7 @@ public class ClientDAO {
             // id (clé primaire de la table client) est en auto_increment,donc on ne renseigne pas cette valeur
             // la paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
             // supprimer ce paramètre en cas de requête sans auto_increment.
-            requete=connection.prepareStatement("INSERT INTO CLIENT ( nom, prenom, rue, copos, ville, codePays)\n" +
+            requete=connection.prepareStatement("INSERT INTO client ( nom, prenom, rue, copos, ville, codePays)\n" +
                     "VALUES (?,?,?,?,?,?)", requete.RETURN_GENERATED_KEYS );
             requete.setString(1, unClient.getNom());
             requete.setString(2, unClient.getPrenom());

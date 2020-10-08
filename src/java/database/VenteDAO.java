@@ -46,7 +46,7 @@ public class VenteDAO {
         {
             //preparation de la requete 
             //System.out.println("req avant" + requete);
-            requete=connection.prepareStatement("select distinct * from vente, CategVente, Lieu where codeCategVente=code and idLieu = Lieu.id order by dateDebut desc");          
+            requete=connection.prepareStatement("select distinct * from vente, categvente, lieu where codeCategVente=code and idLieu = lieu.id order by dateDebut desc");          
             //System.out.println("req apres" + requete);
             //executer la requete
             rs=requete.executeQuery();
@@ -92,7 +92,7 @@ public class VenteDAO {
         {
             //preparation de la requete     
             //codeCateg="ETE";
-            requete=connection.prepareStatement("SELECT c.*, p.nom as nomPays, cv.libelle FROM client c, pays p, clientcategvente cc, categVente cv where c.codePays=p.code and cc.codeClient=c.id and cv.code=cc.codeCategVente and codeCategVente= ? ");
+            requete=connection.prepareStatement("SELECT c.*, p.nom as nomPays, cv.libelle FROM client c, pays p, clientcategvente cc, categvente cv where c.codePays=p.code and cc.codeClient=c.id and cv.code=cc.codeCategVente and codeCategVente= ? ");
             requete.setString(1, codeCateg);
             //executer la requete
             rs=requete.executeQuery();
