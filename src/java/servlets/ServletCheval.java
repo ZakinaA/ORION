@@ -75,7 +75,7 @@ public class ServletCheval extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String url = request.getRequestURI();
-        if(url.equals("/EquidaWeb20/ServletCheval/ajouterCheval")){
+        if(url.equals("/Orion/ServletCheval/ajouterCheval")){
             
             ArrayList<TypeCheval> lesTypeChevaux = TypeChevalDAO.getLesTypeChevaux(connection);
             request.setAttribute("pLesTypeCheval", lesTypeChevaux);
