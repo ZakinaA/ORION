@@ -18,6 +18,10 @@ public class TypeCheval {
     public TypeCheval() {
     }
 
+    public TypeCheval(int id) {
+        this.id = id;
+    }
+
     public TypeCheval(int id, String libelle, String description) {
         this.id = id;
         this.libelle = libelle;

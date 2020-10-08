@@ -5,13 +5,10 @@
  */
 package database;
 
-import static database.ClientDAO.requete;
-import static database.ClientDAO.rs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import modele.Cheval;
 
 /**
@@ -59,27 +56,19 @@ public class ChevalDAO {
           //System.out.println("cheval DAO");
         try
         {
-             //System.out.println("TRY ");
-            //System.out.println("connection" + connection.toString());
+                //System.out.println("TRY ");
+                //System.out.println("connection ! " + connection.toString());
             requete=connection.prepareStatement("INSERT INTO cheval (nom, sexe, numSire, idTypeCheval)\n" +
                     "VALUES (?,?,?,?)", requete.RETURN_GENERATED_KEYS);
             //requete.setInt(1, unCheval.getId());
             requete.setString(1, unCheval.getNom());
             requete.setString(2, unCheval.getSexe());
             requete.setString(3, unCheval.getNumSire());
-            requete.setInt(4, 1);
-            System.out.println(requete);
-            /*
-            requete.setInt(1, 9);
-            requete.setString(2, "dfs");
-            requete.setString(3, "M");
-            requete.setString(4, "12121");
-            requete.setInt(5, 1);
-            */
-            
+            requete.setInt(4, unCheval.getUnTypeCheval().getId());
+                System.out.println(requete.toString());
             //Exécution de la requête 
             requete.executeUpdate();
-            
+            System.out.println(requete + "La requete");
             rs = requete.getGeneratedKeys();
             while ( rs.next() ) {
                 idGenere = rs.getInt( 1 );

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import modele.Cheval;
+import modele.TypeCheval;
 
 /**
  *
@@ -64,7 +65,7 @@ public class ChevalForm {
         String nom = getDataForm( request, "nom");
         String sexe = getDataForm( request, "sexe" );
         String numSire = getDataForm( request, "numSire");
-        
+        String idTypeCheval = getDataForm (request, "typecheval");
         
         try {
              //validationCode( id );
@@ -82,7 +83,7 @@ public class ChevalForm {
         unCheval.setNom(nom);
         unCheval.setSexe(sexe);
         unCheval.setNumSire(numSire);
-        
+        unCheval.setUnTypeCheval(new TypeCheval(Integer.parseInt(idTypeCheval)));
         return unCheval ;
     }
     
