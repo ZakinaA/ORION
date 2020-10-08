@@ -94,4 +94,46 @@ public class ChevalDAO {
         }
         return unCheval ;    
     }
+     
+     public static Cheval modifierCheval(Connection connection, Cheval unCheval){
+        int idGenere = -1;
+        
+          //System.out.println("cheval DAO");
+        try
+        {
+             //System.out.println("TRY ");
+            //System.out.println("connection" + connection.toString());
+            requete=connection.prepareStatement("Update cheval (nom, sexe, numSire, idTypeCheval)\n" +
+                    "VALUES (?,?,?,?) where id = ?");
+            //requete.setInt(1, unCheval.getId());
+            requete.setString(1, unCheval.getNom());
+            requete.setString(2, unCheval.getSexe());
+            requete.setString(3, unCheval.getNumSire());
+            requete.setInt(4, 1);
+            System.out.println(requete);
+            /*
+            requete.setInt(1, 9);
+            requete.setString(2, "dfs");
+            requete.setString(3, "M");
+            requete.setString(4, "12121");
+            requete.setInt(5, 1);
+            */
+            
+            //Exécution de la requête 
+            requete.executeUpdate();
+            
+            rs = requete.getGeneratedKeys();
+            while ( rs.next() ) {
+                idGenere = rs.getInt( 1 );
+                unCheval.setId(idGenere);
+            }
+            System.out.println(requete);
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unCheval ;    
+    }
 }
