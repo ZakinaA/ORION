@@ -99,7 +99,7 @@ s
                 </br>            
                 
                 <label for="categVente">Categorie Vente : </label><br>
-                <select class="form-control" id="categVente" name ="categVente">
+                <!--<select class="form-control" id="categVente" name ="categVente"> -->
                 <%
                         ArrayList<CategVente> lesCategVente = (ArrayList)request.getAttribute("pLesCategVente");
                         for (int i=0; i<lesCategVente.size();i++){
@@ -110,7 +110,7 @@ s
                             out.println("</label></br>");
                         }
                     %>
-                    </select></br>
+                    <!-- </select></br> -->
                    
                
                

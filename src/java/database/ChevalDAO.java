@@ -103,7 +103,7 @@ public class ChevalDAO {
         {
              //System.out.println("TRY ");
             //System.out.println("connection" + connection.toString());
-            requete=connection.prepareStatement("Update cheval (nom, sexe, numSire, idTypeCheval)\n" +
+            requete=connection.prepareStatement("UPDATE cheval (nom, sexe, numSire, idTypeCheval)\n" +
                     "VALUES (?,?,?,?) where id = ?");
             //requete.setInt(1, unCheval.getId());
             requete.setString(1, unCheval.getNom());

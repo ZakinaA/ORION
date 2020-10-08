@@ -4,6 +4,20 @@
         <param-name>pilotejdbc</param-name>
         <param-value>com.mysql.jdbc.Driver</param-value>
     </context-param>
+    <!-- BDD Distante -->
+    <context-param>
+        <param-name>urlconnexionjdbc</param-name>
+        <param-value>jdbc:mysql://172.20.0.241/ORION</param-value>
+    </context-param>
+    <context-param>
+        <param-name>utilisateurjdbc</param-name>
+        <param-value>ADM_ORION</param-value>
+    </context-param>
+    <context-param>
+        <param-name>motdepassejdbc</param-name>
+        <param-value>mpOrion</param-value>
+    </context-param>
+    <!--
     <context-param>
         <param-name>urlconnexionjdbc</param-name>
         <param-value>jdbc:mysql://localhost:3306/equida20</param-value>
@@ -16,6 +30,7 @@
         <param-name>motdepassejdbc</param-name>
         <param-value/>
     </context-param>
+    -->
     <!--  écouteurs -->
     <listener>
         <listener-class>database.InitConnexion</listener-class>

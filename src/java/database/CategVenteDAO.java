@@ -53,7 +53,7 @@ public class CategVenteDAO {
         try
         {
            
-            requete=connection.prepareStatement("INSERT INTO CategVente ( code, libelle)\n" +
+            requete=connection.prepareStatement("INSERT INTO categvente ( code, libelle)\n" +
                     "VALUES (?,?)");
             requete.setString(1, unCategVente.getCode());
             requete.setString(2, unCategVente.getLibelle());
