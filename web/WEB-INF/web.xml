@@ -65,6 +65,10 @@
         <url-pattern>/ServletClient/ajouterClient</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletClient</servlet-name>
+        <url-pattern>/ServletClient/updateClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletAdmin</servlet-name>
         <url-pattern>/ServletAdmin</url-pattern>
     </servlet-mapping>

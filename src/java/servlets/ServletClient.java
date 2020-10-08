@@ -118,11 +118,16 @@ public class ServletClient extends HttpServlet {
         /* Stockage du formulaire et de l'objet dans l'objet request */
         request.setAttribute( "form", form );
         request.setAttribute( "pClient", unClient );
-		
+	
         if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
             ClientDAO.ajouterClient(connection, unClient);
+            System.out.println(unClient.getId());
+            //if(unClient.getId() > 1){
             this.getServletContext().getRequestDispatcher("/vues/client/clientConsulter.jsp" ).forward( request, response );
+            //}
+            //else{
+            //}
         }
         else
         { 
