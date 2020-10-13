@@ -1,10 +1,10 @@
 <%-- 
-    Document   : consulterClient
-    Created on : 23 juin 2017, 10:33:23
-    Author     : Zakina
+    Document   : typeChevalAjouter
+    Created on : 8 oct. 2020, 13:45:30
+    Author     : sio2
 --%>
 
-<%@page import="modele.Client"%>
+<%@page import="formulaires.TypeChevalForm"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,13 +12,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Consultation CLient</title>
+        <title>Ajouter un type de cheval</title>
     </head>
-
     <body>
-                   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Equida</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -48,43 +46,27 @@
     </ul>
     
   </div>
+  
 </nav>
-              </br>
-    <body>        
-
+       </br>
+       <div class="container">
+           <h1>Inscription TypeCheval</h1>
+       </br>
+       
          <%
-        Client unClient = (Client)request.getAttribute("pClient");
-        %>
+                TypeChevalForm form = (TypeChevalForm)request.getAttribute("form");
+            %>
         
-        <%--
-        <table class="table table-bordered table-striped table-condensed">
-            <tr><td>NOM :</td><td><% out.println(unClient.getNom());%></td></tr>
-            <tr><td>PRENOM :</td><td><%  out.println(unClient.getPrenom());%></td>  </tr>
-            <tr><td>ADRESSE  :</td><td><%  out.println(unClient.getRue());%></td>  </tr>
-            <tr><td> CODE POSTAL  :</td><td><%  out.println(unClient.getCopos());%></td>  </tr>
-            <tr><td> VILLE  :</td><td><%  out.println(unClient.getVille());%></td>  </tr>
-            <tr><td> Catégories selectionnées</td><td>
-            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
-               out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
-             
-            }
-            %>
-            </td></tr>
-        </table>--%>
-    <center>
-        <h2>Information sur le client <% out.println(unClient.getNom());%> <%  out.println(unClient.getPrenom());%></h2>
-        <p>Il est domicilier au <%  out.println(unClient.getRue());%></p>
-        <p>à <%  out.println(unClient.getVille());%>, <%  out.println(unClient.getCopos());%></p>
-        <table >Les catégories de vente qu'il l'intéresse sont : 
-            <tr><td> - </td><td>
-            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
-               out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
-             
-            }
-            %>
-            </td></tr>
-        </table>
-    </center>
+        <form class="form-group" action="ajouterTypeCheval" method="POST">
+                <label for="libelle">Race : </label>
+                <input class="form-control" id="libelle"  type="text"  name="libelle" size="30" maxlength="30">      
+                </br>
+                <label for="description">Description : </label>
+                <input class="form-control" id="description"  type="text"  name="description" size="30" maxlength="30">      
+                </br>
+            <input type="submit" name="valider" id="valider" value="Valider"/>
+        </form>
+       </div>
     </body>
 </html>
 

@@ -68,6 +68,8 @@ public class ChevalDAO {
                 System.out.println(requete.toString());
             //Exécution de la requête 
             requete.executeUpdate();
+            
+            
             System.out.println(requete + "La requete");
             rs = requete.getGeneratedKeys();
             while ( rs.next() ) {
