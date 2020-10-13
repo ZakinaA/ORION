@@ -46,6 +46,7 @@ public class VenteDAO {
         {
             //preparation de la requete 
             //System.out.println("req avant" + requete);
+            //System.out.println("connection" + connection.toString());
             requete=connection.prepareStatement("select distinct * from vente, categvente, lieu where codeCategVente=code and idLieu = lieu.id order by dateDebut desc");          
             //System.out.println("req apres" + requete);
             //executer la requete

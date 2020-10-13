@@ -88,7 +88,7 @@ public class ServletVentes extends HttpServlet {
         
         // Récup et affichage par date décroissante de toutes les ventes   
           
-        if(url.equals("/EquidaWeb20/ServletVentes/listerLesVentes"))
+        if(url.equals("/Orion/ServletVentes/listerLesVentes"))
         {  
             ArrayList<Vente> lesVentes = VenteDAO.getLesVentes(connection);
             request.setAttribute("pLesVentes", lesVentes);
@@ -96,7 +96,7 @@ public class ServletVentes extends HttpServlet {
         }
         
         // Récup et affichage des clients interessés par une certaine catégorie de ventes
-        if(url.equals("/EquidaWeb20/ServletVentes/listerLesClients"))
+        if(url.equals("/Orion/ServletVentes/listerLesClients"))
         {  
            System.out.println("DANS LISTER LES CLIENTS");
             String codeCat = (String)request.getParameter("codeCat");
@@ -107,7 +107,7 @@ public class ServletVentes extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/ventes/listerLesClients.jsp").forward(request, response);
         }
         
-        if(url.equals("/EquidaWeb20/ServletVentes/listerLesCourriel"))
+        if(url.equals("/Orion/ServletVentes/listerLesCourriel"))
         {
             System.out.println("DANS LISTER LES COURRIELS");
              String codeVen = (String)request.getParameter("codeVen");
@@ -120,7 +120,7 @@ public class ServletVentes extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/ventes/listerLesCourriel.jsp").forward(request, response);
         } 
         
-        if(url.equals("/EquidaWeb20/ServletVentes/listerLesLots"))
+        if(url.equals("/Orion/ServletVentes/listerLesLots"))
         {
             System.out.println("DANS LISTER LES LOTS");
              String codeVen = (String)request.getParameter("codeVen");
@@ -133,7 +133,7 @@ public class ServletVentes extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/ventes/listerLesLots.jsp").forward(request, response);
         }
         
-        if(url.equals("/EquidaWeb20/ServletVentes/listerLesChevaux"))
+        if(url.equals("/Orion/ServletVentes/listerLesChevaux"))
         {
             System.out.println("DANS LISTER LES Chevaux");
              String codeLot = (String)request.getParameter("codeLot");

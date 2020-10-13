@@ -76,12 +76,12 @@ public class ServletAdmin extends HttpServlet {
             throws ServletException, IOException {
         
         String url = request.getRequestURI();
-        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterCategVente")){
+        if(url.equals("/Orion/ServletAdmin/ajouterCategVente")){
        // processRequest(request, response);                   
             this.getServletContext().getRequestDispatcher("/vues/categ/categVenteAjouter.jsp" ).forward( request, response );
         }
         
-        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterTypeCheval")){
+        if(url.equals("/Orion/ServletAdmin/ajouterTypeCheval")){
             this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalAjouter.jsp" ).forward( request, response );
         }
     }
@@ -98,7 +98,7 @@ public class ServletAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getRequestURI();
-        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterCategVente")){     
+        if(url.equals("/Orion/ServletAdmin/ajouterCategVente")){     
             /* Préparation de l'objet formulaire */
             CategVenteForm form = new CategVenteForm();
 		
@@ -116,7 +116,7 @@ public class ServletAdmin extends HttpServlet {
             }
         }
         
-        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterTypeCheval")){
+        if(url.equals("/Orion/ServletAdmin/ajouterTypeCheval")){
             
            // System.out.println("t111111111111111");
             TypeChevalForm form = new TypeChevalForm();
