@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import modele.Cheval;
+import modele.TypeCheval;
 
 /**
  *
@@ -65,23 +66,35 @@ public class ChevalDAO {
             requete.setString(2, unCheval.getSexe());
             requete.setString(3, unCheval.getNumSire());
             requete.setInt(4, unCheval.getUnTypeCheval().getId());
-                System.out.println(requete.toString());
+            //System.out.println(requete.toString());
             //Exécution de la requête 
-            requete.executeUpdate();
+            int resultatRequ = requete.executeUpdate();
             
-            
-            System.out.println(requete + "La requete");
+            if (resultatRequ == 1){
+                System.out.println("Resultat Req. " + resultatRequ);
+            //System.out.println(requete + "La requete");
             rs = requete.getGeneratedKeys();
             while ( rs.next() ) {
                 idGenere = rs.getInt( 1 );
                 unCheval.setId(idGenere);
+            } 
+            //System.out.println(requete);
+            
+            System.out.println("ID dans ajouterCheval + ID CHEVAL"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getId());
+            
+            unCheval = getRecupCheval(connection, unCheval.getId());
+            System.out.println("LIBEELLLE APRES RECUP"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getUnTypeCheval().getLibelle());
             }
-            System.out.println(requete);
+            else {
+                System.out.println("Resultat Req. " + resultatRequ);
+                unCheval = null;
+            }
         }   
         catch (SQLException e) 
         {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
+            unCheval = null;
         }
         return unCheval ;    
     }
@@ -101,7 +114,7 @@ public class ChevalDAO {
             requete.setString(2, unCheval.getSexe());
             requete.setString(3, unCheval.getNumSire());
             requete.setInt(4, 1);
-            System.out.println(requete);
+            //System.out.println(requete);
             /*
             requete.setInt(1, 9);
             requete.setString(2, "dfs");
@@ -118,7 +131,7 @@ public class ChevalDAO {
                 idGenere = rs.getInt( 1 );
                 unCheval.setId(idGenere);
             }
-            System.out.println(requete);
+            //System.out.println(requete);
         }   
         catch (SQLException e) 
         {
@@ -127,4 +140,38 @@ public class ChevalDAO {
         }
         return unCheval ;    
     }
-}
+     
+     public static Cheval getRecupCheval(Connection connection, int idGenere){
+         Cheval unCheval = new Cheval();
+        try{
+            
+            
+            requete=connection.prepareStatement("Select ch.*, tc.libelle from cheval ch, typecheval tc where ch.idTypeCheval = tc.id and ch.id = ?");
+            requete.setInt(1, idGenere);
+            rs=requete.executeQuery();
+            
+            System.out.println("reqqqq  " +  requete);
+            while ( rs.next() ) {  
+                //unCheval.setId(rs.getInt("id"));
+                unCheval.setNom(rs.getString("nom"));
+                unCheval.setSexe(rs.getString("sexe"));
+                unCheval.setNumSire(rs.getString("numSire"));
+                
+                
+                TypeCheval unTypeCheval = new TypeCheval();
+                unTypeCheval.setLibelle(rs.getString("libelle"));
+                
+                unCheval.setUnTypeCheval(unTypeCheval);
+                
+                System.out.println("LIBBBB dans getRecupCheval"+ unCheval.getUnTypeCheval().getLibelle());
+            }
+         }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unCheval;
+     }
+}    
+
