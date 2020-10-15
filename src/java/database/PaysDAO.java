@@ -5,15 +5,12 @@
  */
 package database;
 
-import static database.VenteDAO.requete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import modele.CategVente;
 import modele.Pays;
-import modele.Vente;
 
 /**
  *
@@ -50,5 +47,31 @@ public class PaysDAO {
         }
         return lesPays ;    
     } 
+     
+     public static Pays ajouterPays(Connection connection, Pays unTypeCheval){
+        
+          //System.out.println("TypeCheval DAO");
+        try
+        {
+                //System.out.println("TRY ");
+                //System.out.println("connection ! " + connection.toString());
+            requete=connection.prepareStatement("INSERT INTO pays (code, nom)\n" +
+                    "VALUES (?,?)");
+            //requete.setInt(1, unCheval.getId());
+            requete.setString(1, unTypeCheval.getCode());
+            requete.setString(2, unTypeCheval.getNom());
+                //System.out.println(requete.toString());
+            //Exécution de la requête 
+            requete.executeUpdate();
+            //System.out.println(requete + "La requete");
+            System.out.println(requete);
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unTypeCheval ;    
+    }
     
 }

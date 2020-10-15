@@ -41,7 +41,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
         </div>
       </li>
     </ul>
@@ -53,7 +55,6 @@
       </ul>
 </nav>
               </br>
-        <h1>Infos cheval</h1>
         
          <%
         Cheval unCheval = (Cheval)request.getAttribute("pCheval");
@@ -73,7 +74,7 @@
             Son numéro d'identification (Sire) est le <%  out.println(unCheval.getNumSire());%>
         </p>
         <p>
-            C'est un <%  out.println(unCheval.getSexe());%> de race <%  out.println(unCheval.getUnTypeCheval().getLibelle());%>
+            C'est un <%  out.println(unCheval.getSexe());%> de race <% out.println(unCheval.getUnTypeCheval().getLibelle());%>
         </p>
     </center>
     </body>

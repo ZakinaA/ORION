@@ -6,22 +6,22 @@
 package servlets;
 
 import database.CategVenteDAO;
-import database.ClientDAO;
 import database.PaysDAO;
+import database.TypeChevalDAO;
 import formulaires.CategVenteForm;
-import formulaires.ClientForm;
+import formulaires.PaysForm;
+import formulaires.TypeChevalForm;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modele.CategVente;
-import modele.Client;
 import modele.Pays;
+import modele.TypeCheval;
 
 /**
  *
@@ -77,9 +77,20 @@ public class ServletAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String url = request.getRequestURI();
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterCategVente")){
        // processRequest(request, response);                   
             this.getServletContext().getRequestDispatcher("/vues/categ/categVenteAjouter.jsp" ).forward( request, response );
+        }
         
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterTypeCheval")){
+            this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalAjouter.jsp" ).forward( request, response );
+        }
+        
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterPays")){
+            this.getServletContext().getRequestDispatcher("/vues/pays/paysAjouter.jsp" ).forward( request, response );
+        }
     }
 
     /**
@@ -93,22 +104,68 @@ public class ServletAdmin extends HttpServlet {
     @Override   
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
-         /* Préparation de l'objet formulaire */
-        CategVenteForm form = new CategVenteForm();
+        String url = request.getRequestURI();
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterCategVente")){     
+            /* Préparation de l'objet formulaire */
+            CategVenteForm form = new CategVenteForm();
+		
+            /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+            CategVente unCategVente = form.ajouterCategVente(request);
+        
+            /* Stockage du formulaire et de l'objet dans l'objet request */
+            request.setAttribute( "form", form );
+            request.setAttribute( "pCategVente", unCategVente );
+		
+            if (form.getErreurs().isEmpty()){
+                // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client
+                CategVente categTest = CategVenteDAO.ajouterCategVente(connection, unCategVente);
+                if ( categTest != null ){
+                    request.setAttribute( "pCheval", categTest );
+                    this.getServletContext().getRequestDispatcher("/vues/categ/categVenteConsulter.jsp" ).forward( request, response );
+                }
+                else{
+                    this.getServletContext().getRequestDispatcher("/vues/categ/categVenteAjouter.jsp" ).forward( request, response );
+                }
+            }
+        }
+        
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterTypeCheval")){
+            
+           // System.out.println("t111111111111111");
+            TypeChevalForm form = new TypeChevalForm();
 		
         /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
-        CategVente unCategVente = form.ajouterCategVente(request);
-        
+        TypeCheval unTypeCheval = form.ajouterTypeCheval(request);
+        //System.out.println("testuuuuuuuu");
         /* Stockage du formulaire et de l'objet dans l'objet request */
         request.setAttribute( "form", form );
-        request.setAttribute( "pCategVente", unCategVente );
+        request.setAttribute( "pTypeCheval", unTypeCheval );
 		
-        if (form.getErreurs().isEmpty()){
+            if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-            CategVenteDAO.ajouterCategVente(connection, unCategVente);
-            this.getServletContext().getRequestDispatcher("/vues/categ/categVenteConsulter.jsp" ).forward( request, response );
-        }    
+                TypeChevalDAO.ajouterTypeCheval(connection, unTypeCheval);
+                this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalConsulter.jsp" ).forward( request, response );
+            }
+        }
+        
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterPays")){
+            
+           // System.out.println("t111111111111111");
+            PaysForm form = new PaysForm();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Pays unPays = form.ajouterPays(request);
+        //System.out.println("testuuuuuuuu");
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pPays", unPays );
+		
+            if (form.getErreurs().isEmpty()){
+            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
+                PaysDAO.ajouterPays(connection, unPays);
+                this.getServletContext().getRequestDispatcher("/vues/pays/paysConsulter.jsp" ).forward( request, response );
+            }
+        }
     }
 
     /**

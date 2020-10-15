@@ -1,10 +1,10 @@
 <%-- 
-    Document   : chevalModifier
-    Created on : 1 oct. 2020, 16:33:09
+    Document   : typeChevalAjouter
+    Created on : 8 oct. 2020, 13:45:30
     Author     : sio2
 --%>
 
-<%@page import="modele.Cheval"%>
+<%@page import="formulaires.TypeChevalForm"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,16 +12,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Consulter Cheval</title>
+        <title>Ajouter un type de cheval</title>
     </head>
     <body>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="../index.html">
-            <img src="../vues/img/Logo2.png" width="30" height="30" class="d-inline-block align-top" alt="ilg">
-            Equida
-        </a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Equida</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -41,34 +37,35 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
         </div>
       </li>
     </ul>
-   <form class="form-inline my-2 my-lg-0">
-      <ul class="form-inline my-2 my-lg-0">
-       <a type="button" class="btn btn-outline-primary" href="../inscription.html">S'inscrire </a> &nbsp;
-       <a type="button" class="btn btn-outline-success" href="../connexion.html">Connexion </a>
-       
-      </ul>
+    
+  </div>
+  
 </nav>
-        <h1>Infos cheval</h1>
-        
+       </br>
+       <div class="container">
+           <h1>Inscription TypeCheval</h1>
+       </br>
+       
          <%
-        Cheval unCheval = (Cheval)request.getAttribute("pCheval");
-        %>
+                TypeChevalForm form = (TypeChevalForm)request.getAttribute("form");
+            %>
         
-        
-         <table class="table table-bordered table-striped table-condensed">
-            <tr><td>Nom :</td><td><%  out.println(unCheval.getNom());%></td></tr>
-            <tr><td>Sexe :</td><td><%  out.println(unCheval.getSexe());%></td></tr>
-            <tr><td>Numero Sire :</td><td><%  out.println(unCheval.getNumSire());%></td></tr>
-            <tr><td>Type de cheval :</td><td><%  out.println(unCheval.getUnTypeCheval().getLibelle());%></td></tr>
-            <tr><td>Nom du propriétaire :</td><td><%  out.println(unCheval.getUnClient().getNom());%></td></tr>
-            <tr><td>Prenom du propriétaire :</td><td><%  out.println(unCheval.getUnClient().getPrenom());%></td></tr>
-            <tr><td>Cheval pere :</td><td><%  out.println(unCheval.getUnChevalPere().getNom());%></td></tr>
-            <tr><td>Cheval mere :</td><td><%  out.println(unCheval.getUnChevalMere().getNom());%></td></tr>
-        </table>
+        <form class="form-group" action="ajouterTypeCheval" method="POST">
+                <label for="libelle">Race : </label>
+                <input class="form-control" id="libelle"  type="text"  name="libelle" size="30" maxlength="30">      
+                </br>
+                <label for="description">Description : </label>
+                <input class="form-control" id="description"  type="text"  name="description" size="30" maxlength="30">      
+                </br>
+            <input type="submit" name="valider" id="valider" value="Valider"/>
+        </form>
+       </div>
     </body>
 </html>
 

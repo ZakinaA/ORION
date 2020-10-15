@@ -119,25 +119,28 @@ public class ServletClient extends HttpServlet {
 	
         if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-            ClientDAO.ajouterClient(connection, unClient);
-            System.out.println(unClient.getId());
+            Client cliTest = ClientDAO.ajouterClient(connection, unClient);
+            //System.out.println(unClient.getId());
+            //System.out.println("cli : " + cliTest);
             //if(unClient.getId() > 1){
-            this.getServletContext().getRequestDispatcher("/vues/client/clientConsulter.jsp" ).forward( request, response );
-            //}
-            //else{
-            //}
-        }
-        else
-        { 
-		// il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
-            ArrayList<Pays> lesPays = PaysDAO.getLesPays(connection);
-            request.setAttribute("pLesPays", lesPays);
+            if(cliTest != null){
+               //System.out.println("cli N'EST P2AS NUL: " + cliTest);
             
-            ArrayList<CategVente> lesCategVentes = CategVenteDAO.getLesCategVentes(connection);
-            request.setAttribute("pLesCategVente", lesCategVentes);
-           this.getServletContext().getRequestDispatcher("/vues/client/clientAjouter.jsp" ).forward( request, response );
-        }
-    
+                request.setAttribute( "pClient", cliTest );
+                //System.out.println(request + " dvcfdsvfd");
+                
+                this.getServletContext().getRequestDispatcher("/vues/client/clientConsulter.jsp" ).forward( request, response ); 
+            }
+            else{
+               System.out.println("cli ESTNUL: " + cliTest);
+                ArrayList<Pays> lesPays = PaysDAO.getLesPays(connection);
+                request.setAttribute("pLesPays", lesPays);
+                
+                ArrayList<CategVente> lesCategVentes = CategVenteDAO.getLesCategVentes(connection);
+                request.setAttribute("pLesCategVente", lesCategVentes);
+                this.getServletContext().getRequestDispatcher("/vues/client/clientAjouter.jsp" ).forward( request, response );
+            }
+        }    
     }
 
     /**
