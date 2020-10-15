@@ -107,7 +107,7 @@ public class ServletCheval extends HttpServlet {
         if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
             Cheval cheTest = ChevalDAO.ajouterCheval(connection, unCheval);
-            cheTest = null;
+            //cheTest = null;
             System.out.println("che : " + cheTest);
             
            
