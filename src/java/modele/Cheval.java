@@ -19,6 +19,7 @@ public class Cheval {
     private String numSire;
     private String dateNaissance;
     private TypeCheval unTypeCheval;
+    private String image;
     private Client unClient;
     ArrayList<Lot> listeLot;
     Cheval unChevalPere;
@@ -153,4 +154,14 @@ public class Cheval {
     public void setUnChevalMere(Cheval unChevalMere) {
         this.unChevalMere = unChevalMere;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    
 }

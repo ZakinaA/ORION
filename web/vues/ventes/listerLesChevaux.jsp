@@ -18,7 +18,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Equida</a>
+        <a class="navbar-brand" href="../index.html">
+            <img src="../vues/img/Logo2.png" width="30" height="30" class="d-inline-block align-top" alt="ilg">
+            Equida
+        </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -42,8 +45,12 @@
         </div>
       </li>
     </ul>
-  
-  </div>
+  <form class="form-inline my-2 my-lg-0">
+      <ul class="form-inline my-2 my-lg-0">
+       <a type="button" class="btn btn-outline-primary" href="../inscription.html">S'inscrire </a> &nbsp;
+       <a type="button" class="btn btn-outline-success" href="../connexion.html">Connexion </a>
+       
+      </ul>
 </nav>
         </br>
   
@@ -56,6 +63,7 @@
                 <tr>             
                     <th>id</th>
                     <th>Nom</th>
+                    <th>Photo</th>
                     <th>Sexe</th>
                     <th>Numero Sire</th>
                     <th>Type de cheval</th>
@@ -82,6 +90,10 @@
                         out.println("<td>");
                         out.println(unCheval.getNom());
                         out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println("<img src='" + unCheval.getImage()+ "'width='100' height='100'");
+                        out.println("</td>"); 
 
                         out.println("<td>");
                         out.println(unCheval.getSexe());
@@ -110,6 +122,8 @@
                         out.println("<td>");
                         out.println(unCheval.getUnChevalMere().getNom());
                         out.println("</td>");  
+                        
+                        
                     }
                     %>
                 </tr>
