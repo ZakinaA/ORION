@@ -6,8 +6,10 @@
 package servlets;
 
 import database.CategVenteDAO;
+import database.PaysDAO;
 import database.TypeChevalDAO;
 import formulaires.CategVenteForm;
+import formulaires.PaysForm;
 import formulaires.TypeChevalForm;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modele.CategVente;
+import modele.Pays;
 import modele.TypeCheval;
 
 /**
@@ -84,6 +87,10 @@ public class ServletAdmin extends HttpServlet {
         if(url.equals("/EquidaWeb20/ServletAdmin/ajouterTypeCheval")){
             this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalAjouter.jsp" ).forward( request, response );
         }
+        
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterPays")){
+            this.getServletContext().getRequestDispatcher("/vues/pays/paysAjouter.jsp" ).forward( request, response );
+        }
     }
 
     /**
@@ -128,11 +135,30 @@ public class ServletAdmin extends HttpServlet {
         request.setAttribute( "form", form );
         request.setAttribute( "pTypeCheval", unTypeCheval );
 		
-        if (form.getErreurs().isEmpty()){
+            if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-            TypeChevalDAO.ajouterTypeCheval(connection, unTypeCheval);
-            this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalConsulter.jsp" ).forward( request, response );
+                TypeChevalDAO.ajouterTypeCheval(connection, unTypeCheval);
+                this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalConsulter.jsp" ).forward( request, response );
+            }
         }
+        
+        if(url.equals("/EquidaWeb20/ServletAdmin/ajouterPays")){
+            
+           // System.out.println("t111111111111111");
+            PaysForm form = new PaysForm();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Pays unPays = form.ajouterPays(request);
+        //System.out.println("testuuuuuuuu");
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pPays", unPays );
+		
+            if (form.getErreurs().isEmpty()){
+            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
+                PaysDAO.ajouterPays(connection, unPays);
+                this.getServletContext().getRequestDispatcher("/vues/pays/paysConsulter.jsp" ).forward( request, response );
+            }
         }
     }
 

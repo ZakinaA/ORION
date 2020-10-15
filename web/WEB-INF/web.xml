@@ -96,6 +96,10 @@
         <url-pattern>/ServletAdmin/ajouterTypeCheval</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletAdmin</servlet-name>
+        <url-pattern>/ServletAdmin/ajouterPays</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletCheval</servlet-name>
         <url-pattern>/ServletCheval/ajouterCheval</url-pattern>
     </servlet-mapping>
