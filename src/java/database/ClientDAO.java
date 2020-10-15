@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import modele.CategVente;
 import modele.Client;
+import modele.Pays;
 
 /**
  *
@@ -21,7 +24,9 @@ public class ClientDAO {
     
     Connection connection=null;
     static PreparedStatement requete=null;
+    static PreparedStatement requeteCategVente=null;
     static ResultSet rs=null;
+    static ResultSet rsCategVente=null;
     
     
     
@@ -46,24 +51,28 @@ public class ClientDAO {
             requete.setString(7, unClient.getUnPays().getCode());
 
            /* Exécution de la requête */
-            requete.executeUpdate();
-            
-             // Récupération de id auto-généré par la bdd dans la table client
+            int resultatRequ = requete.executeUpdate();
+            if (resultatRequ == 1){
+            //System.out.println("Resultat Req. " + resultatRequ);
+            //System.out.println(requete + "La requete");
             rs = requete.getGeneratedKeys();
             while ( rs.next() ) {
                 idGenere = rs.getInt( 1 );
                 unClient.setId(idGenere);
             }
             
-            // ajout des enregistrement dans la table clientcategvente
-            for (int i=0;i<unClient.getLesCategVentes().size();i++){
-                PreparedStatement requete2=connection.prepareStatement("INSERT INTO clientcategvente (codeClient, codeCategVente )\n" +
-                    "VALUES (?,?)");
-                 requete2.setInt(1, unClient.getId());
-                 requete2.setString(2, unClient.getLesCategVentes().get(i).getCode());
-                 requete2.executeUpdate();
+                for (int i=0;i<unClient.getLesCategVentes().size();i++){
+                    PreparedStatement requete2=connection.prepareStatement("INSERT INTO clientcategvente (codeClient, codeCategVente )\n" +
+                        "VALUES (?,?)");
+                    requete2.setInt(1, unClient.getId());
+                    requete2.setString(2, unClient.getLesCategVentes().get(i).getCode());
+                    requete2.executeUpdate();
+                }
+                unClient = getRecupClient(connection, unClient.getId());
             }
-            
+            else{
+                unClient = null;
+            }  
         }   
         catch (SQLException e) 
         {
@@ -72,5 +81,61 @@ public class ClientDAO {
         }
         return unClient ;    
     }
-       
+    
+    public static Client getRecupClient(Connection connection, int idGenere){
+         Client unClient = new Client();
+         ArrayList<CategVente> lesCategVentes = new  ArrayList<CategVente>();
+        try{
+            
+            
+            requete=connection.prepareStatement("Select c.*, p.nom as pays from client c, pays p where c.codePays = p.code and c.id = ?");
+            requeteCategVente=connection.prepareStatement("select cv.* from clientcategvente cc, categvente cv, client c where c.id = cc.codeClient and cc.codeCategVente = cv.code and c.id = ?");
+            
+            //System.out.println("REQUETECATEGVENTE=" + requeteCategVente);
+            
+            requete.setInt(1, idGenere);
+            requeteCategVente.setInt(1, idGenere);
+            
+            //System.out.println("REQUETECATEGVENTE=" + requeteCategVente);
+            
+            rs=requete.executeQuery();
+            
+            //System.out.println("reqqqq  " +  requete);
+            while ( rs.next()) {  
+                //unCheval.setId(rs.getInt("id"));
+                unClient.setNom(rs.getString("nom"));
+                unClient.setPrenom(rs.getString("prenom"));
+                unClient.setRue(rs.getString("rue"));
+                unClient.setCopos(rs.getString("copos"));
+                unClient.setVille(rs.getString("Ville"));
+                unClient.setMel(rs.getString("mail"));
+                
+                Pays unPays = new Pays();
+                unPays.setNom(rs.getString("pays"));
+                
+                unClient.setUnPays(unPays);
+                
+                //System.out.println("LIBBBB dans getRecupCheval"+ unCheval.getUnTypeCheval().getLibelle());
+            }
+            
+            rsCategVente=requeteCategVente.executeQuery();
+            
+           while (rsCategVente.next()){
+                CategVente uneCateg = new CategVente();
+                uneCateg.setCode(rsCategVente.getString("code"));
+                uneCateg.setLibelle(rsCategVente.getString("libelle"));
+                
+                lesCategVentes.add(uneCateg);
+               
+           }
+           
+            unClient.setLesCategVentes(lesCategVentes);
+         }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unClient;
+     }   
 }
