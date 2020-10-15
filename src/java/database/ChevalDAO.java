@@ -71,7 +71,7 @@ public class ChevalDAO {
             int resultatRequ = requete.executeUpdate();
             
             if (resultatRequ == 1){
-                System.out.println("Resultat Req. " + resultatRequ);
+                //System.out.println("Resultat Req. " + resultatRequ);
             //System.out.println(requete + "La requete");
             rs = requete.getGeneratedKeys();
             while ( rs.next() ) {
@@ -80,13 +80,13 @@ public class ChevalDAO {
             } 
             //System.out.println(requete);
             
-            System.out.println("ID dans ajouterCheval + ID CHEVAL"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getId());
+            //System.out.println("ID dans ajouterCheval + ID CHEVAL"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getId());
             
             unCheval = getRecupCheval(connection, unCheval.getId());
-            System.out.println("LIBEELLLE APRES RECUP"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getUnTypeCheval().getLibelle());
+            //System.out.println("LIBEELLLE APRES RECUP"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getUnTypeCheval().getLibelle());
             }
             else {
-                System.out.println("Resultat Req. " + resultatRequ);
+                //System.out.println("Resultat Req. " + resultatRequ);
                 unCheval = null;
             }
         }   
@@ -113,26 +113,33 @@ public class ChevalDAO {
             requete.setString(1, unCheval.getNom());
             requete.setString(2, unCheval.getSexe());
             requete.setString(3, unCheval.getNumSire());
-            requete.setInt(4, 1);
+            requete.setInt(4, unCheval.getUnTypeCheval().getId());
             //System.out.println(requete);
-            /*
-            requete.setInt(1, 9);
-            requete.setString(2, "dfs");
-            requete.setString(3, "M");
-            requete.setString(4, "12121");
-            requete.setInt(5, 1);
-            */
+            
             
             //Exécution de la requête 
-            requete.executeUpdate();
+            int resultatReqMod = requete.executeUpdate();
             
+            if (resultatReqMod == 1){
+                //System.out.println("Resultat Req. " + resultatRequ);
+            //System.out.println(requete + "La requete");
             rs = requete.getGeneratedKeys();
             while ( rs.next() ) {
                 idGenere = rs.getInt( 1 );
                 unCheval.setId(idGenere);
-            }
+            } 
             //System.out.println(requete);
-        }   
+            
+            //System.out.println("ID dans ajouterCheval + ID CHEVAL"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getId());
+            
+            unCheval = getRecupCheval(connection, unCheval.getId());
+            //System.out.println("LIBEELLLE APRES RECUP"+ unCheval.getUnTypeCheval().getId() + "   " + unCheval.getUnTypeCheval().getLibelle());
+            }
+            else {
+                //System.out.println("Resultat Req. " + resultatRequ);
+                unCheval = null;
+            }
+        }
         catch (SQLException e) 
         {
             e.printStackTrace();
@@ -141,7 +148,7 @@ public class ChevalDAO {
         return unCheval ;    
     }
      
-     public static Cheval getRecupCheval(Connection connection, int idGenere){
+    public static Cheval getRecupCheval(Connection connection, int idGenere){
          Cheval unCheval = new Cheval();
         try{
             
@@ -150,7 +157,7 @@ public class ChevalDAO {
             requete.setInt(1, idGenere);
             rs=requete.executeQuery();
             
-            System.out.println("reqqqq  " +  requete);
+            //System.out.println("reqqqq  " +  requete);
             while ( rs.next() ) {  
                 //unCheval.setId(rs.getInt("id"));
                 unCheval.setNom(rs.getString("nom"));
@@ -163,7 +170,7 @@ public class ChevalDAO {
                 
                 unCheval.setUnTypeCheval(unTypeCheval);
                 
-                System.out.println("LIBBBB dans getRecupCheval"+ unCheval.getUnTypeCheval().getLibelle());
+                //System.out.println("LIBBBB dans getRecupCheval"+ unCheval.getUnTypeCheval().getLibelle());
             }
          }   
         catch (SQLException e) 
