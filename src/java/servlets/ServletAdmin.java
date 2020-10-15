@@ -120,7 +120,7 @@ public class ServletAdmin extends HttpServlet {
                 // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client
                 CategVente categTest = CategVenteDAO.ajouterCategVente(connection, unCategVente);
                 if ( categTest != null ){
-                    request.setAttribute( "pCheval", categTest );
+                    request.setAttribute( "pCategVente", categTest );
                     this.getServletContext().getRequestDispatcher("/vues/categ/categVenteConsulter.jsp" ).forward( request, response );
                 }
                 else{
@@ -162,8 +162,14 @@ public class ServletAdmin extends HttpServlet {
 		
             if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-                PaysDAO.ajouterPays(connection, unPays);
-                this.getServletContext().getRequestDispatcher("/vues/pays/paysConsulter.jsp" ).forward( request, response );
+                Pays paysTest = PaysDAO.ajouterPays(connection, unPays);
+                if ( paysTest != null ){
+                    request.setAttribute( "pPays", paysTest );
+                    this.getServletContext().getRequestDispatcher("/vues/pays/paysConsulter.jsp" ).forward( request, response );
+                }
+                else{
+                    this.getServletContext().getRequestDispatcher("/vues/pays/paysAjouter.jsp" ).forward( request, response );
+                }
             }
         }
     }
