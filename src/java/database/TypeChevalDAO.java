@@ -50,4 +50,37 @@ public class TypeChevalDAO {
         }
         return lesTypeChevaux;    
     }
+    
+    public static TypeCheval ajouterTypeCheval(Connection connection, TypeCheval unTypeCheval){
+        int idGenere = -1;
+        
+          //System.out.println("TypeCheval DAO");
+        try
+        {
+                //System.out.println("TRY ");
+                //System.out.println("connection ! " + connection.toString());
+            requete=connection.prepareStatement("INSERT INTO typecheval (libelle, description)\n" +
+                    "VALUES (?,?)", requete.RETURN_GENERATED_KEYS);
+            //requete.setInt(1, unCheval.getId());
+            requete.setString(1, unTypeCheval.getLibelle());
+            requete.setString(2, unTypeCheval.getDescription());
+                System.out.println(requete.toString());
+            //Exécution de la requête 
+            requete.executeUpdate();
+            System.out.println(requete + "La requete");
+            rs = requete.getGeneratedKeys();
+            while ( rs.next() ) {
+                idGenere = rs.getInt( 1 );
+                //System.out.println(idGenere);
+                unTypeCheval.setId(idGenere);
+            }
+            System.out.println(requete);
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unTypeCheval ;    
+    }
 }

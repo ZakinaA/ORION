@@ -1,10 +1,10 @@
 <%-- 
-    Document   : chevalModifier
-    Created on : 1 oct. 2020, 16:33:09
+    Document   : typeChevalAjouter
+    Created on : 8 oct. 2020, 13:45:30
     Author     : sio2
 --%>
 
-<%@page import="modele.Cheval"%>
+<%@page import="formulaires.TypeChevalForm"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,12 +12,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Consulter Cheval</title>
+        <title>Ajouter un type de cheval</title>
     </head>
     <body>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Equida</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -38,26 +37,35 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
         </div>
       </li>
     </ul>
     
   </div>
+  
 </nav>
-        <h1>Infos cheval</h1>
-        
-         <%
-        Cheval unCheval = (Cheval)request.getAttribute("pCheval");
-        %>
-        
-        
-         <table class="table table-bordered table-striped table-condensed">
-            <tr><td>Nom :</td><td><%  out.println(unCheval.getNom());%></td></tr>
-            <tr><td>Sexe :</td><td><%  out.println(unCheval.getSexe());%></td></tr>
-            <tr><td>Numero Sire :</td><td><%  out.println(unCheval.getNumSire());%></td></tr>
-        </table>
+       </br>
+       <div class="container">
+           <h1>Inscription TypeCheval</h1>
+       </br>
        
+         <%
+                TypeChevalForm form = (TypeChevalForm)request.getAttribute("form");
+            %>
+        
+        <form class="form-group" action="ajouterTypeCheval" method="POST">
+                <label for="libelle">Race : </label>
+                <input class="form-control" id="libelle"  type="text"  name="libelle" size="30" maxlength="30">      
+                </br>
+                <label for="description">Description : </label>
+                <input class="form-control" id="description"  type="text"  name="description" size="30" maxlength="30">      
+                </br>
+            <input type="submit" name="valider" id="valider" value="Valider"/>
+        </form>
+       </div>
     </body>
 </html>
 

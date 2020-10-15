@@ -1,10 +1,10 @@
 <%-- 
-    Document   : consulterClient
-    Created on : 23 juin 2017, 10:33:23
-    Author     : Zakina
+    Document   : paysConsulter
+    Created on : 15 oct. 2020, 09:02:28
+    Author     : sio2
 --%>
 
-<%@page import="modele.Client"%>
+<%@page import="modele.Pays"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,11 +12,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Consultation CLient</title>
+        <title>JSP Page</title>
     </head>
-
     <body>
-                   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Equida</a>
@@ -47,45 +46,25 @@
     </ul>
     
   </div>
-</nav>
-              </br>
-    <body>        
-
-        <%
-        Client unClient = (Client)request.getAttribute("pClient");
+</nav></br>        
+         <%
+        Pays unPays = (Pays)request.getAttribute("pPays");
         %>
-        <center>
-        <h2>Information sur le client <% out.println(unClient.getNom());%> <%  out.println(unClient.getPrenom());%></h2>
-        
-        <p>Il est domicilier au <%  out.println(unClient.getRue());%></p>
-        <p>à <%  out.println(unClient.getVille());%>, <%  out.println(unClient.getCopos());%></p>
-        <p>Son adresse mail est : <%  out.println(unClient.getMel());%></p>
-        <table >Les catégories de vente qu'il l'intéresse sont : 
-            <tr><td>  </td><td>
-            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
-               out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
-             
-            }
-            %>
-            </td></tr>
-        </table>
-        </center>
         
         <%--
-        <table class="table table-bordered table-striped table-condensed">
-            <tr><td>NOM :</td><td><% out.println(unClient.getNom());%></td></tr>
-            <tr><td>PRENOM :</td><td><%  out.println(unClient.getPrenom());%></td>  </tr>
-            <tr><td>ADRESSE  :</td><td><%  out.println(unClient.getRue());%></td>  </tr>
-            <tr><td> CODE POSTAL  :</td><td><%  out.println(unClient.getCopos());%></td>  </tr>
-            <tr><td> VILLE  :</td><td><%  out.println(unClient.getVille());%></td>  </tr>
-            <tr><td> Catégories selectionnées</td><td>
-            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
-               out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
-             
-            }
-            %>
-            </td></tr>
-        </table>--%>
+         <table class="table table-bordered table-striped table-condensed">
+            <tr><td>Nom :</td><td><%  out.println(unCheval.getNom());%></td></tr>
+            <tr><td>Sexe :</td><td><%  out.println(unCheval.getSexe());%></td></tr>
+            <tr><td>Numero Sire :</td><td><%  out.println(unCheval.getNumSire());%></td></tr>
+        </table>
+        --%>
+    
+    <center>
+        <h1>Ajoute d'un pays</h1>
+        <p>
+           Le pays <%  out.println(unPays.getNom());%> a été ajouter Sous le code <%  out.println(unPays.getCode());%>
+        </p>
+    </center>
     </body>
 </html>
 

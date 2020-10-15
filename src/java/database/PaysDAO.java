@@ -5,15 +5,12 @@
  */
 package database;
 
-import static database.VenteDAO.requete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import modele.CategVente;
 import modele.Pays;
-import modele.Vente;
 
 /**
  *
@@ -50,5 +47,62 @@ public class PaysDAO {
         }
         return lesPays ;    
     } 
-    
+     
+     public static Pays ajouterPays(Connection connection, Pays unPays){
+        
+          //System.out.println("TypeCheval DAO");
+        try
+        {
+                //System.out.println("TRY ");
+                //System.out.println("connection ! " + connection.toString());
+            requete=connection.prepareStatement("INSERT INTO pays (code, nom)\n" +
+                    "VALUES (?,?)");
+            //requete.setInt(1, unCheval.getId());
+            requete.setString(1, unPays.getCode());
+            requete.setString(2, unPays.getNom());
+            //System.out.println(requete.toString());
+            
+            //System.out.println(requete + "La requete");
+            int resultatREQ = requete.executeUpdate();
+            System.out.println(resultatREQ + " RESDHCXSB ");
+            if (resultatREQ == 1){
+                unPays = getRecupPays(connection);
+            }
+            else{
+                unPays = null;
+            }
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            unPays = null;
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unPays ;    
+    }
+     
+     public static Pays getRecupPays(Connection connection){
+         Pays unPays = new Pays();
+        try{
+            
+            
+            requete=connection.prepareStatement("SELECT p.* FROM pays p WHERE c.code = ?");
+            rs=requete.executeQuery();
+            
+            //System.out.println("reqqqq  " +  requete);
+            while ( rs.next() ) {  
+                //unCheval.setId(rs.getInt("id"));
+                unPays.setCode(rs.getString("code"));
+                unPays.setNom(rs.getString("nom"));              
+                //System.out.println("LIBBBB dans getRecupCheval"+ unCheval.getUnTypeCheval().getLibelle());
+            }
+            System.out.println(unPays);
+         }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unPays;
+     }
 }

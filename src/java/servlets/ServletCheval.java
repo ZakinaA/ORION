@@ -102,12 +102,27 @@ public class ServletCheval extends HttpServlet {
         
         /* Stockage du formulaire et de l'objet dans l'objet request */
         request.setAttribute( "form", form );
-        request.setAttribute( "pCheval", unCheval );
+        //request.setAttribute( "pCheval", unCheval );
 		
         if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-            ChevalDAO.ajouterCheval(connection, unCheval);
-            this.getServletContext().getRequestDispatcher("/vues/cheval/chevalConsulter.jsp" ).forward( request, response );
+            Cheval cheTest = ChevalDAO.ajouterCheval(connection, unCheval);
+            //cheTest = null;
+            //System.out.println("che : " + cheTest);
+            
+           
+            if ( cheTest != null ){
+              //System.out.println("che N'EST P2AS NUL: " + cheTest);
+            
+                request.setAttribute( "pCheval", cheTest );
+                this.getServletContext().getRequestDispatcher("/vues/cheval/chevalConsulter.jsp" ).forward( request, response );
+            }
+            else{
+                //System.out.println("che ESTNUL: " + cheTest);
+                ArrayList<TypeCheval> lesTypeChevaux = TypeChevalDAO.getLesTypeChevaux(connection);
+            request.setAttribute("pLesTypeCheval", lesTypeChevaux);
+            this.getServletContext().getRequestDispatcher("/vues/cheval/chevalAjouter.jsp" ).forward( request, response );
+            }
         }    
     }
 
