@@ -64,7 +64,7 @@ public class PaysDAO {
             
             //System.out.println(requete + "La requete");
             int resultatREQ = requete.executeUpdate();
-            System.out.println(resultatREQ + " RESDHCXSB ");
+            //System.out.println(resultatREQ + " RESDHCXSB ");
             if (resultatREQ == 1){
                 unPays = getRecupPays(connection);
             }

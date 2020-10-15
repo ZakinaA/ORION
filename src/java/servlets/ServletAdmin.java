@@ -143,8 +143,14 @@ public class ServletAdmin extends HttpServlet {
 		
             if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-                TypeChevalDAO.ajouterTypeCheval(connection, unTypeCheval);
-                this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalConsulter.jsp" ).forward( request, response );
+                TypeCheval TypeChevalTest = TypeChevalDAO.ajouterTypeCheval(connection, unTypeCheval);
+                if ( TypeChevalTest != null ){
+                    request.setAttribute( "pTypeCheval", TypeChevalTest );
+                    this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalConsulter.jsp" ).forward( request, response );
+                }
+                else{
+                    this.getServletContext().getRequestDispatcher("/vues/cheval/typeChevalAjouter.jsp" ).forward( request, response );
+                }
             }
         }
         
