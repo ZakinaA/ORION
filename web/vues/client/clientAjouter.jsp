@@ -84,6 +84,10 @@
                 <input class="form-control" id="ville"  type="text"  name="ville" size="40" maxlength="40">
                 </br>
                 
+                <label for="mail">Mail : </label>
+                <input class="form-control" id="mail"  type="text"  name="mail" size="40" maxlength="40">
+                </br>
+                
                 <%-- Champ Liste des pays --%>
                 <label for="pays">Pays : </label>
                 <select class="form-control" id="codePays" name ="pays">

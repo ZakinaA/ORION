@@ -74,6 +74,7 @@
         <h2>Information sur le client <% out.println(unClient.getNom());%> <%  out.println(unClient.getPrenom());%></h2>
         <p>Il est domicilier au <%  out.println(unClient.getRue());%></p>
         <p>à <%  out.println(unClient.getVille());%>, <%  out.println(unClient.getCopos());%></p>
+        <p>Son adresse mail est : <%  out.println(unClient.getMel());%></p>
         <table >Les catégories de vente qu'il l'intéresse sont : 
             <tr><td> - </td><td>
             <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){

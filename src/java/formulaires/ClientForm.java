@@ -68,6 +68,7 @@ public class ClientForm {
         String rue = getDataForm( request, "rue" );
         String copos = getDataForm( request, "copos");
         String ville = getDataForm( request, "ville" );
+        String mail = getDataForm( request, "mail" );
         String pays = getDataForm( request, "pays" );
         
         // Traitement de la liste à choix multiple
@@ -100,6 +101,7 @@ public class ClientForm {
         unClient.setRue(rue);
         unClient.setCopos(copos);
         unClient.setVille(ville);
+        unClient.setMel(mail);
         unClient.setUnPays(new Pays(pays));
                
        
