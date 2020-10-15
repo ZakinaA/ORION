@@ -117,9 +117,15 @@ public class ServletAdmin extends HttpServlet {
             request.setAttribute( "pCategVente", unCategVente );
 		
             if (form.getErreurs().isEmpty()){
-                // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
-                CategVenteDAO.ajouterCategVente(connection, unCategVente);
-                this.getServletContext().getRequestDispatcher("/vues/categ/categVenteConsulter.jsp" ).forward( request, response );
+                // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client
+                CategVente categTest = CategVenteDAO.ajouterCategVente(connection, unCategVente);
+                if ( categTest != null ){
+                    request.setAttribute( "pCheval", categTest );
+                    this.getServletContext().getRequestDispatcher("/vues/categ/categVenteConsulter.jsp" ).forward( request, response );
+                }
+                else{
+                    this.getServletContext().getRequestDispatcher("/vues/categ/categVenteAjouter.jsp" ).forward( request, response );
+                }
             }
         }
         

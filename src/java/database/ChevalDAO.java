@@ -99,7 +99,7 @@ public class ChevalDAO {
         return unCheval ;    
     }
      
-     public static Cheval modifierCheval(Connection connection, Cheval unCheval){
+     /* public static Cheval modifierCheval(Connection connection, Cheval unCheval){
         int idGenere = -1;
         
           //System.out.println("cheval DAO");
@@ -146,7 +146,7 @@ public class ChevalDAO {
             //out.println("Erreur lors de l’établissement de la connexion");
         }
         return unCheval ;    
-    }
+    }*/
      
     public static Cheval getRecupCheval(Connection connection, int idGenere){
          Cheval unCheval = new Cheval();

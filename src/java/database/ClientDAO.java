@@ -77,6 +77,7 @@ public class ClientDAO {
         catch (SQLException e) 
         {
             e.printStackTrace();
+            unClient = null;
             //out.println("Erreur lors de l’établissement de la connexion");
         }
         return unClient ;    
