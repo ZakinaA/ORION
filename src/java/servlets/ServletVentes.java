@@ -95,6 +95,13 @@ public class ServletVentes extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/ventes/listerLesVentes.jsp").forward(request, response);
         }
         
+        if(url.equals("/Orion/ServletVentes/CalendrierVentes"))
+        {  
+            ArrayList<Vente> lesVentes = VenteDAO.getLesVentesVenir(connection);
+            request.setAttribute("pLesVentes", lesVentes);
+            getServletContext().getRequestDispatcher("/vues/ventes/CalendrierVentes.jsp").forward(request, response);
+        }
+        
         // Récup et affichage des clients interessés par une certaine catégorie de ventes
         if(url.equals("/Orion/ServletVentes/listerLesClients"))
         {  

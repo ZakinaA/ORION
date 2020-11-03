@@ -59,6 +59,10 @@
         <servlet-name>ServletVentes</servlet-name>
         <url-pattern>/ServletVentes/listerLesVentes</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>ServletVentes</servlet-name>
+        <url-pattern>/ServletVentes/CalendrierVentes</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletVentes</servlet-name>
         <url-pattern>/ServletVentes/listerLesClients</url-pattern>
