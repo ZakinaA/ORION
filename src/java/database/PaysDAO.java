@@ -66,7 +66,7 @@ public class PaysDAO {
             int resultatREQ = requete.executeUpdate();
             //System.out.println(resultatREQ + " RESDHCXSB ");
             if (resultatREQ == 1){
-                unPays = getRecupPays(connection);
+                unPays = getRecupPays(connection, unPays.getCode());
             }
             else{
                 unPays = null;
@@ -81,12 +81,13 @@ public class PaysDAO {
         return unPays ;    
     }
      
-     public static Pays getRecupPays(Connection connection){
+     public static Pays getRecupPays(Connection connection, String codePays){
          Pays unPays = new Pays();
         try{
             
             
             requete=connection.prepareStatement("SELECT p.* FROM pays p WHERE c.code = ?");
+            requete.setString(1, codePays);
             rs=requete.executeQuery();
             
             //System.out.println("reqqqq  " +  requete);
