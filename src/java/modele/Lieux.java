@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Zakina
  */
-public class Lieu {
+public class Lieux {
     
     private int id ;
     private String ville;
@@ -20,10 +20,10 @@ public class Lieu {
     
     private ArrayList<Vente> ListeVente;
 
-    public Lieu() {
+    public Lieux() {
     }
 
-    public Lieu(int id, String ville, String nbBoxe, String commentaire, ArrayList<Vente> ListeVente) {
+    public Lieux(int id, String ville, String nbBoxe, String commentaire, ArrayList<Vente> ListeVente) {
         this.id = id;
         this.ville = ville;
         this.nbBoxe = nbBoxe;
@@ -31,7 +31,7 @@ public class Lieu {
         this.ListeVente = ListeVente;
     }
 
-    public Lieu(int id, String ville, String nbBoxe, String commentaire) {
+    public Lieux(int id, String ville, String nbBoxe, String commentaire) {
         this.id = id;
         this.ville = ville;
         this.nbBoxe = nbBoxe;

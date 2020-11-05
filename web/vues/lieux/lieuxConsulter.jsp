@@ -1,10 +1,10 @@
 <%-- 
-    Document   : paysConsulter
-    Created on : 15 oct. 2020, 09:02:28
+    Document   : lieuxConsulter
+    Created on : 5 nov. 2020, 13:21:53
     Author     : sio2
 --%>
 
-<%@page import="modele.Pays"%>
+<%@page import="modele.Lieux"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,7 +49,7 @@
   </div>
 </nav></br>        
          <%
-        Pays unPays = (Pays)request.getAttribute("pPays");
+        Lieux unLieu = (Lieux)request.getAttribute("pLieux");
         %>
         
         <%--
@@ -61,9 +61,11 @@
         --%>
     
     <center>
-        <h1>Ajoute d'un pays</h1>
+        <h1>Ajoute d'un lieu</h1>
         <p>
-           Le pays <%  out.println(unPays.getNom());%> a été ajouter Sous le code <%  out.println(unPays.getCode());%>
+           Le lieux <%  out.println(unLieu.getVille());%> a été ajouter !
+           Il contient <% out.println(unLieu.getNbBoxe());%> boxes !
+           Commentaire : <%  out.println(unLieu.getCommentaire());%>
         </p>
     </center>
     </body>
@@ -73,3 +75,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    </body>
+</html>

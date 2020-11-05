@@ -6,9 +6,11 @@
 package servlets;
 
 import database.CategVenteDAO;
+import database.LieuxDAO;
 import database.PaysDAO;
 import database.TypeChevalDAO;
 import formulaires.CategVenteForm;
+import formulaires.LieuxForm;
 import formulaires.PaysForm;
 import formulaires.TypeChevalForm;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modele.CategVente;
+import modele.Lieux;
 import modele.Pays;
 import modele.TypeCheval;
 
@@ -90,6 +93,10 @@ public class ServletAdmin extends HttpServlet {
         
         if(url.equals("/Orion/ServletAdmin/ajouterPays")){
             this.getServletContext().getRequestDispatcher("/vues/pays/paysAjouter.jsp" ).forward( request, response );
+        }
+        
+        if(url.equals("/Orion/ServletAdmin/ajouterLieux")){
+            this.getServletContext().getRequestDispatcher("/vues/lieux/lieuxAjouter.jsp" ).forward( request, response );
         }
     }
 
@@ -175,6 +182,31 @@ public class ServletAdmin extends HttpServlet {
                 }
                 else{
                     this.getServletContext().getRequestDispatcher("/vues/pays/paysAjouter.jsp" ).forward( request, response );
+                }
+            }
+        }
+        
+        if(url.equals("/Orion/ServletAdmin/ajouterLieux")){
+            
+           // System.out.println("t111111111111111");
+            LieuxForm form = new LieuxForm();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Lieux unLieu = form.ajouterLieux(request);
+        //System.out.println("testuuuuuuuu");
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pLieux", unLieu );
+		
+            if (form.getErreurs().isEmpty()){
+            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du client 
+                Lieux LieuxTest = LieuxDAO.ajouterLieux(connection, unLieu);
+                if ( LieuxTest != null ){
+                    request.setAttribute( "pLieux", LieuxTest );
+                    this.getServletContext().getRequestDispatcher("/vues/lieux/lieuxConsulter.jsp" ).forward( request, response );
+                }
+                else{
+                    this.getServletContext().getRequestDispatcher("/vues/lieux/lieuxAjouter.jsp" ).forward( request, response );
                 }
             }
         }
