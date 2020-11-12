@@ -5,14 +5,12 @@
  */
 package database;
 
-import static database.ClientDAO.requete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modele.CategVente;
-import modele.Client;
 /**
  *
  * @author Zakina
@@ -57,15 +55,49 @@ public class CategVenteDAO {
                     "VALUES (?,?)");
             requete.setString(1, unCategVente.getCode());
             requete.setString(2, unCategVente.getLibelle());
-
-           /* Exécution de la requête */
-            requete.executeUpdate();   
+            //System.out.println(requete);
+            /* Exécution de la requête */
+            int resultatREQ = requete.executeUpdate();
+            //System.out.println(resultatREQ + " RESDHCXSB ");
+            if (resultatREQ == 1){
+                unCategVente = getRecupCategVente(connection, unCategVente.getCode());
+            }
+            else{
+                unCategVente = null;
+            }   
         }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            unCategVente = null;
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return unCategVente ;    
+    }
+     public static CategVente getRecupCategVente(Connection connection, String code){
+         CategVente unCategVente = new CategVente();
+        try{
+            
+            
+            requete=connection.prepareStatement("SELECT c.* FROM categvente c WHERE c.code = ?");
+            requete.setString(1, code);
+            rs=requete.executeQuery();
+            
+            //System.out.println("reqqqq  " +  requete);
+            while ( rs.next() ) {  
+                //unCheval.setId(rs.getInt("id"));
+                unCategVente.setCode(rs.getString("code"));
+                unCategVente.setLibelle(rs.getString("libelle"));              
+                //System.out.println("LIBBBB dans getRecupCheval"+ unCheval.getUnTypeCheval().getLibelle());
+            }
+            System.out.println(unCategVente);
+         }   
         catch (SQLException e) 
         {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
         }
-        return unCategVente ;    
-    }
+        return unCategVente;
+     }
 }
+

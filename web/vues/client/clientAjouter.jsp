@@ -45,7 +45,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterLieux">Ajouter Lieux</a>
         </div>
       </li>
     </ul>
@@ -80,6 +83,10 @@
                 
                 <label for="ville">Ville : </label>
                 <input class="form-control" id="ville"  type="text"  name="ville" size="40" maxlength="40">
+                </br>
+                
+                <label for="mail">Mail : </label>
+                <input class="form-control" id="mail"  type="text"  name="mail" size="40" maxlength="40">
                 </br>
                 
                 <%-- Champ Liste des pays --%>

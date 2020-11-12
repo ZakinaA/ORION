@@ -41,7 +41,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterLieux">Ajouter Lieux</a>
         </div>
       </li>
     </ul>

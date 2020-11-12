@@ -5,7 +5,7 @@
  */
 package tests;
 
-import modele.Lieu;
+import modele.Lieux;
 
 /**
  *
@@ -14,7 +14,7 @@ import modele.Lieu;
 public class LieuTest {
     
     public static void main(String[] args) {
-        Lieu unLieu = new Lieu(1,"Caen","20 ","grand boxe");
+        Lieux unLieu = new Lieux(1,"Caen","20 ","grand boxe");
         System.out.println(unLieu.getVille()+ " contient " + unLieu.getNbBoxe() + unLieu.getCommentaire());
     }
 }

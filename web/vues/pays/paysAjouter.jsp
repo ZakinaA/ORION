@@ -1,25 +1,22 @@
 <%-- 
-    Document   : categVenteAjouter
-    Created on : 24 sept. 2020, 14:30:06
+    Document   : paysAjouter
+    Created on : 15 oct. 2020, 09:02:15
     Author     : sio2
 --%>
 
-<%@page import="formulaires.CategVenteForm"%>
+<%@page import="formulaires.PaysForm"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-           <meta charset="UTF-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Ajouter une catgeorie</title>
+        <title>Ajout d'un pays</title>
     </head>
     <body>
-        
-        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Equida</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -47,28 +44,32 @@
         </div>
       </li>
     </ul>
-
+    
   </div>
+  
 </nav>
-        
-        <div class="container">
-        <h1>Nouvelle catégorie</h1>
+       </br>
+       <div class="container">
+           <h1>Inscription Pays</h1>
+       </br>
+       
          <%
-                CategVenteForm form = (CategVenteForm)request.getAttribute("form");
+                PaysForm form = (PaysForm)request.getAttribute("form");
             %>
         
-        <form class="form-group" action="ajouterCategVente" method="POST">
-                <label for="code">Code : </label>
-                <input class="form-control" id="code" type="text" name="code"  size="30" maxlength="5">
+        <form class="form-group" action="ajouterPays" method="POST">
+                <label for="code">code : </label>
+                <input class="form-control" id="code"  type="text"  name="code" size="3" maxlength="3">      
                 </br>
-                <label for="libelle">Libelle : </label>
-                <input class="form-control" id="libelle"  type="text"  name="libelle" size="30" maxlength="30">      
+                <label for="nom">nom : </label>
+                <input class="form-control" id="nom"  type="text"  name="nom" size="30" maxlength="30">      
                 </br>
             <input type="submit" name="valider" id="valider" value="Valider"/>
-            </form>
-        </div>
+        </form>
+       </div>
     </body>
 </html>
+
 
 <!-- JS, Popper.js, and jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -1,25 +1,22 @@
 <%-- 
-    Document   : categVenteAjouter
-    Created on : 24 sept. 2020, 14:30:06
+    Document   : typeChevalAjouter
+    Created on : 8 oct. 2020, 13:45:30
     Author     : sio2
 --%>
 
-<%@page import="formulaires.CategVenteForm"%>
+<%@page import="formulaires.TypeChevalForm"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-           <meta charset="UTF-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Ajouter une catgeorie</title>
+        <title>Ajouter un type de cheval</title>
     </head>
     <body>
-        
-        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Equida</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -47,26 +44,29 @@
         </div>
       </li>
     </ul>
-
+    
   </div>
+  
 </nav>
-        
-        <div class="container">
-        <h1>Nouvelle catégorie</h1>
+       </br>
+       <div class="container">
+           <h1>Inscription TypeCheval</h1>
+       </br>
+       
          <%
-                CategVenteForm form = (CategVenteForm)request.getAttribute("form");
+                TypeChevalForm form = (TypeChevalForm)request.getAttribute("form");
             %>
         
-        <form class="form-group" action="ajouterCategVente" method="POST">
-                <label for="code">Code : </label>
-                <input class="form-control" id="code" type="text" name="code"  size="30" maxlength="5">
-                </br>
-                <label for="libelle">Libelle : </label>
+        <form class="form-group" action="ajouterTypeCheval" method="POST">
+                <label for="libelle">Race : </label>
                 <input class="form-control" id="libelle"  type="text"  name="libelle" size="30" maxlength="30">      
                 </br>
+                <label for="description">Description : </label>
+                <input class="form-control" id="description"  type="text"  name="description" size="30" maxlength="30">      
+                </br>
             <input type="submit" name="valider" id="valider" value="Valider"/>
-            </form>
-        </div>
+        </form>
+       </div>
     </body>
 </html>
 

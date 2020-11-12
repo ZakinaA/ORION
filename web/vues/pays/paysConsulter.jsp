@@ -1,9 +1,10 @@
 <%-- 
-    Document   : chevalSupprimer
-    Created on : 1 oct. 2020, 16:32:03
+    Document   : paysConsulter
+    Created on : 15 oct. 2020, 09:02:28
     Author     : sio2
 --%>
 
+<%@page import="modele.Pays"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -37,16 +38,37 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterLieux">Ajouter Lieux</a>
         </div>
       </li>
     </ul>
     
   </div>
-</nav>
-        <h1>Hello World!</h1>
+</nav></br>        
+         <%
+        Pays unPays = (Pays)request.getAttribute("pPays");
+        %>
+        
+        <%--
+         <table class="table table-bordered table-striped table-condensed">
+            <tr><td>Nom :</td><td><%  out.println(unCheval.getNom());%></td></tr>
+            <tr><td>Sexe :</td><td><%  out.println(unCheval.getSexe());%></td></tr>
+            <tr><td>Numero Sire :</td><td><%  out.println(unCheval.getNumSire());%></td></tr>
+        </table>
+        --%>
+    
+    <center>
+        <h1>Ajoute d'un pays</h1>
+        <p>
+           Le pays <%  out.println(unPays.getNom());%> a été ajouter Sous le code <%  out.println(unPays.getCode());%>
+        </p>
+    </center>
     </body>
 </html>
+
 <!-- JS, Popper.js, and jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

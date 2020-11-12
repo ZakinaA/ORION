@@ -1,22 +1,20 @@
 <%-- 
-    Document   : categVenteAjouter
-    Created on : 24 sept. 2020, 14:30:06
+    Document   : lieuxConsulter
+    Created on : 5 nov. 2020, 13:21:53
     Author     : sio2
 --%>
 
-<%@page import="formulaires.CategVenteForm"%>
+<%@page import="modele.Lieux"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-           <meta charset="UTF-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Ajouter une catgeorie</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        
-        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,26 +45,29 @@
         </div>
       </li>
     </ul>
-
+    
   </div>
-</nav>
-        
-        <div class="container">
-        <h1>Nouvelle catégorie</h1>
+</nav></br>        
          <%
-                CategVenteForm form = (CategVenteForm)request.getAttribute("form");
-            %>
+        Lieux unLieu = (Lieux)request.getAttribute("pLieux");
+        %>
         
-        <form class="form-group" action="ajouterCategVente" method="POST">
-                <label for="code">Code : </label>
-                <input class="form-control" id="code" type="text" name="code"  size="30" maxlength="5">
-                </br>
-                <label for="libelle">Libelle : </label>
-                <input class="form-control" id="libelle"  type="text"  name="libelle" size="30" maxlength="30">      
-                </br>
-            <input type="submit" name="valider" id="valider" value="Valider"/>
-            </form>
-        </div>
+        <%--
+         <table class="table table-bordered table-striped table-condensed">
+            <tr><td>Nom :</td><td><%  out.println(unCheval.getNom());%></td></tr>
+            <tr><td>Sexe :</td><td><%  out.println(unCheval.getSexe());%></td></tr>
+            <tr><td>Numero Sire :</td><td><%  out.println(unCheval.getNumSire());%></td></tr>
+        </table>
+        --%>
+    
+    <center>
+        <h1>Ajoute d'un lieu</h1>
+        <p>
+           Le lieux <%  out.println(unLieu.getVille());%> a été ajouter !
+           Il contient <% out.println(unLieu.getNbBoxe());%> boxes !
+           Commentaire : <%  out.println(unLieu.getCommentaire());%>
+        </p>
+    </center>
     </body>
 </html>
 
@@ -74,3 +75,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    </body>
+</html>

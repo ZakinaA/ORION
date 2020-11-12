@@ -1,10 +1,10 @@
 <%-- 
-    Document   : chevalModifier
-    Created on : 1 oct. 2020, 16:33:09
+    Document   : typeChevalConsulter
+    Created on : 8 oct. 2020, 13:45:53
     Author     : sio2
 --%>
 
-<%@page import="modele.Cheval"%>
+<%@page import="modele.TypeCheval"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Consulter Cheval</title>
+        <title>JSP Page</title>
     </head>
     <body>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -38,26 +38,35 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterLieux">Ajouter Lieux</a>
         </div>
       </li>
     </ul>
     
   </div>
-</nav>
-        <h1>Infos cheval</h1>
-        
+</nav></br>        
          <%
-        Cheval unCheval = (Cheval)request.getAttribute("pCheval");
+        TypeCheval unTypeCheval = (TypeCheval)request.getAttribute("pTypeCheval");
         %>
         
-        
+        <%--
          <table class="table table-bordered table-striped table-condensed">
             <tr><td>Nom :</td><td><%  out.println(unCheval.getNom());%></td></tr>
             <tr><td>Sexe :</td><td><%  out.println(unCheval.getSexe());%></td></tr>
             <tr><td>Numero Sire :</td><td><%  out.println(unCheval.getNumSire());%></td></tr>
         </table>
-       
+        --%>
+    
+    <center>
+        <h1>Ajoute d'une race de cheval</h1>
+        <p>
+           Le type <%  out.println(unTypeCheval.getLibelle());%> a été ajouter !
+           Sa description <%  out.println(unTypeCheval.getDescription());%>
+        </p>
+    </center>
     </body>
 </html>
 
@@ -65,3 +74,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    </body>
+</html>

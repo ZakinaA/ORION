@@ -39,7 +39,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../ServletClient/ajouterClient">Ajouter Client</a>
           <a class="dropdown-item" href="../ServletCheval/ajouterCheval">Ajouter Cheval</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="../ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterPays">Ajouter Pays</a>
+          <a class="dropdown-item" href="../ServletAdmin/ajouterLieux">Ajouter Lieux</a>
         </div>
       </li>
     </ul>
@@ -49,9 +52,25 @@
               </br>
     <body>        
 
-         <%
+        <%
         Client unClient = (Client)request.getAttribute("pClient");
         %>
+        <center>
+        <h2>Information sur le client <% out.println(unClient.getNom());%> <%  out.println(unClient.getPrenom());%></h2>
+        
+        <p>Il est domicilier au <%  out.println(unClient.getRue());%></p>
+        <p>à <%  out.println(unClient.getVille());%>, <%  out.println(unClient.getCopos());%></p>
+        <p>Son adresse mail est : <%  out.println(unClient.getMel());%></p>
+        <table >Les catégories de vente qu'il l'intéresse sont : 
+            <tr><td>  </td><td>
+            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
+               out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
+             
+            }
+            %>
+            </td></tr>
+        </table>
+        </center>
         
         <%--
         <table class="table table-bordered table-striped table-condensed">
@@ -68,20 +87,6 @@
             %>
             </td></tr>
         </table>--%>
-    <center>
-        <h2>Information sur le client <% out.println(unClient.getNom());%> <%  out.println(unClient.getPrenom());%></h2>
-        <p>Il est domicilier au <%  out.println(unClient.getRue());%></p>
-        <p>à <%  out.println(unClient.getVille());%>, <%  out.println(unClient.getCopos());%></p>
-        <table >Les catégories de vente qu'il l'intéresse sont : 
-            <tr><td> - </td><td>
-            <% for (int i=0; i<unClient.getLesCategVentes().size(); i++){
-               out.println(unClient.getLesCategVentes().get(i).getCode() + "</br>");
-             
-            }
-            %>
-            </td></tr>
-        </table>
-    </center>
     </body>
 </html>
 

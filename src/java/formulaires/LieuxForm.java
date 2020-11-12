@@ -5,19 +5,16 @@
  */
 package formulaires;
 
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import modele.CategVente;
-import modele.Client;
-import modele.Pays;
+import modele.Lieux;
 
 /**
  *
- * @author Zakina
+ * @author sio2
  */
-public class ClientForm {
+public class LieuxForm {
     
     private String resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
@@ -39,7 +36,7 @@ public class ClientForm {
     }
     
     //méthode de validation du champ de saisie nom
-    private void validationNom( String nom ) throws Exception {
+    private void validationCode( String nom ) throws Exception {
         if ( nom != null && nom.length() < 3 ) {
         throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractères." );
         }
@@ -59,36 +56,22 @@ public class ClientForm {
     }
     
     
-    public Client ajouterClient( HttpServletRequest request ) {
+    public Lieux ajouterLieux( HttpServletRequest request ) {
       
-        Client unClient  = new Client();
+        Lieux unLieu  = new Lieux();
          
-        String nom = getDataForm( request, "nom" );
-        String prenom = getDataForm( request, "prenom");
-        String rue = getDataForm( request, "rue" );
-        String copos = getDataForm( request, "copos");
-        String ville = getDataForm( request, "ville" );
-        String mail = getDataForm( request, "mail" );
-        String pays = getDataForm( request, "pays" );
+        //String id = getDataForm( request, "id" );
+        String ville = getDataForm( request, "ville");
+        String nbBoxes = getDataForm( request, "nbBoxes" );
+        String commentaire = getDataForm ( request, "commentaire");
+        //System.out.println(commentaire);
         
-        // Traitement de la liste à choix multiple
-        //Pour chq catégorie selectionné, on instancie une nouvelle catégorie et on l'ajoute au client
-        CategVente uneCategVente ;
-        String[] categVente = request.getParameterValues("categVente");
-        for (int i=0; i<categVente.length; i++){
-            uneCategVente = new CategVente();
-            uneCategVente.setCode(categVente[i]);
-            unClient.addUneCategVente(uneCategVente);
-        }
-        
- 
-       
         try {
-             validationNom( nom );
+             //validationCode( id );
         } catch ( Exception e ) {
             setErreur( "nom", e.getMessage() );
         }
-        unClient.setNom(nom);
+        //unCheval.setId(Integer.parseInt(id));
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de l'ajout.";
@@ -96,19 +79,9 @@ public class ClientForm {
             resultat = "Échec de l'ajout.";
         }
          
-      
-        unClient.setPrenom(prenom);
-        unClient.setRue(rue);
-        unClient.setCopos(copos);
-        unClient.setVille(ville);
-        unClient.setMel(mail);
-        unClient.setUnPays(new Pays(pays));
-               
-       
-        return unClient ;
+        unLieu.setVille(ville);
+        unLieu.setNbBoxe(nbBoxes);
+        unLieu.setCommentaire(commentaire);
+        return unLieu;
     }
-    
-    
-    
-
 }

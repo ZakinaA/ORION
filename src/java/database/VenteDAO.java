@@ -16,7 +16,7 @@ import modele.CategVente;
 import modele.Cheval;
 import modele.Client;
 import modele.Courriel;
-import modele.Lieu;
+import modele.Lieux;
 import modele.Lot;
 import modele.Pays;
 import modele.TypeCheval;
@@ -59,7 +59,7 @@ public class VenteDAO {
                 uneVente.setNom(rs.getString("nom"));
                 uneVente.setDateDebutVente(rs.getString("dateDebut"));
                 
-               Lieu unLieu = new Lieu();
+               Lieux unLieu = new Lieux();
                unLieu.setId(rs.getInt("id"));
                unLieu.setVille(rs.getString("ville"));
                unLieu.setNbBoxe(rs.getString("nbBoxes"));
@@ -107,7 +107,7 @@ public class VenteDAO {
                 uneVente.setNom(rs.getString("nom"));
                 uneVente.setDateDebutVente(rs.getString("dateDebut"));
                 
-               Lieu unLieu = new Lieu();
+               Lieux unLieu = new Lieux();
                unLieu.setId(rs.getInt("id"));
                unLieu.setVille(rs.getString("ville"));
                unLieu.setNbBoxe(rs.getString("nbBoxes"));
