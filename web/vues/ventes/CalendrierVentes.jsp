@@ -10,7 +10,7 @@
     <head>
         <%@page import="java.util.ArrayList"%>
         <%@page import="modele.Vente"%>
-        <%@page import="modele.Lieu"%>
+        <%@page import="modele.Lieux"%>
         <%@page import="modele.CategVente"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -64,7 +64,7 @@
                     {
                         
                         Vente uneVente = lesVentes.get(i);
-                        Integer mois = Integer.parseInt(uneVente.getDateDebutVente().substring(8,10));
+                        Integer mois = Integer.parseInt(uneVente.getDateDebutVente().substring(5,7));
                         String moisString;
                         
                         switch (mois) {
