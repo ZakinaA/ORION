@@ -95,7 +95,6 @@
             default: moisString = "-erreur-";
                      break;
         }
-
             %>
 		<div class="row row-striped">
 			<div class="col-2 text-right">
