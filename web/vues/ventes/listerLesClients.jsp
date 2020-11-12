@@ -58,6 +58,7 @@
       </ul>
 </nav>
         </br>
+        <div class="container">
         <h1>Liste des clients pour une catégorie de vente</h1>
          <%
         ArrayList<Client> lesClients = (ArrayList)request.getAttribute("pLesClients");
@@ -120,6 +121,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </body>
 </html>
 

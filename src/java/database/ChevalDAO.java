@@ -153,7 +153,7 @@ public class ChevalDAO {
         try{
             
             
-            requete=connection.prepareStatement("Select ch.*, tc.libelle from cheval ch, typecheval tc where ch.idTypeCheval = tc.id and ch.id = ?");
+            requete=connection.prepareStatement("Select ch.nom, ch.id, ch.sexe, ch.image, ch.numSire, tc.libelle from cheval ch, typecheval tc where ch.idTypeCheval = tc.id and ch.id = ?");
             requete.setInt(1, idGenere);
             rs=requete.executeQuery();
             
@@ -162,7 +162,10 @@ public class ChevalDAO {
                 //unCheval.setId(rs.getInt("id"));
                 unCheval.setNom(rs.getString("nom"));
                 unCheval.setSexe(rs.getString("sexe"));
+                unCheval.setImage(rs.getString("image"));
                 unCheval.setNumSire(rs.getString("numSire"));
+                
+                
                 
                 
                 TypeCheval unTypeCheval = new TypeCheval();

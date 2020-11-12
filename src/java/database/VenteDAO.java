@@ -209,7 +209,7 @@ public class VenteDAO {
         {
             //preparation de la requete     
             //codeVen="210817";
-            requete=connection.prepareStatement("SELECT c1.id, c1.nom, c1.sexe, c1.numSire, c1.idTypeCheval, c2.nom as PereCheval, c3.nom as MereCheval, t.libelle, client.nom as NomProp, client.prenom as PrenomProp FROM cheval as c1, lot l, typecheval t, cheval c2, cheval c3, client WHERE c1.pere = c2.id and c1.mere = c3.id and l.idCheval = c1.id and c1.idTypeCheval = t.id and client.id = c1.idClient and l.id = ? ");
+            requete=connection.prepareStatement("SELECT c1.id, c1.nom, c1.sexe, c1.numSire, c1.idTypeCheval, c2.nom as PereCheval, c3.nom as MereCheval, t.libelle, client.nom as NomProp, client.prenom as PrenomProp, c1.image FROM cheval as c1, lot l, typecheval t, cheval c2, cheval c3, client WHERE c1.pere = c2.id and c1.mere = c3.id and l.idCheval = c1.id and c1.idTypeCheval = t.id and client.id = c1.idClient and l.id = ? ");
             requete.setString(1, codeLot);
             //executer la requete
             System.out.println(requete);
@@ -225,6 +225,7 @@ public class VenteDAO {
                 unCheval.setNom(rs.getString("nom"));
                 unCheval.setSexe(rs.getString("sexe"));
                 unCheval.setNumSire(rs.getString("numSire"));
+                unCheval.setImage(rs.getString("image"));
                 
                 
                 TypeCheval unTypeCheval = new TypeCheval();

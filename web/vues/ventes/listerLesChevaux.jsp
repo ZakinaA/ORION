@@ -55,7 +55,7 @@
       </ul>
 </nav>
         </br>
-  
+        <div class="container">
         <h1>Lister les chevaux</h1>
     <%
         ArrayList<Cheval> lesChevaux = (ArrayList)request.getAttribute("pLesChevaux");
@@ -92,9 +92,9 @@
                         out.println("<td>");
                         out.println(unCheval.getNom());
                         out.println("</td>");
-                        
+                         
                         out.println("<td>");
-                        out.println("<img src='" + unCheval.getImage()+ "'width='100' height='100'");
+                        out.println("<img src='" + unCheval.getImage()+ "' width='100px' height='100px'>");
                         out.println("</td>"); 
 
                         out.println("<td>");
@@ -131,6 +131,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </body>
 </html>
 

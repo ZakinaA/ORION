@@ -63,7 +63,7 @@
                 <label for="description">Description : </label>
                 <input class="form-control" id="description"  type="text"  name="description" size="30" maxlength="30">      
                 </br>
-            <input type="submit" name="valider" id="valider" value="Valider"/>
+            <input class="btn btn-primary" type="Submit" name="valider" id="valider" value="Valider">
         </form>
        </div>
     </body>

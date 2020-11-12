@@ -59,7 +59,9 @@
       </ul>
 </nav>
         </br>
-        <h1>LISTE DES Lots</h1>
+        
+        <div class="container">
+        <h1>LISTE DES LOTS</h1>
          <%
         ArrayList<Lot> lesLots = (ArrayList)request.getAttribute("pLesLots");
         %>
@@ -101,6 +103,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </body>
 </html>
 

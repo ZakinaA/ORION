@@ -63,7 +63,7 @@
                 <label for="nom">nom : </label>
                 <input class="form-control" id="nom"  type="text"  name="nom" size="30" maxlength="30">      
                 </br>
-            <input type="submit" name="valider" id="valider" value="Valider"/>
+            <input class="btn btn-primary" type="Submit" name="valider" id="valider" value="Valider">
         </form>
        </div>
     </body>
