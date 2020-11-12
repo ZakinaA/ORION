@@ -46,7 +46,12 @@
         </div>
       </li>
     </ul>
-    
+      <form class="form-inline my-2 my-lg-0">
+          <ul class="form-inline my-2 my-lg-0">
+              <a type="button" class="btn btn-outline-primary" href="inscription.html">S'inscrire </a> &nbsp;
+              <a type="button" class="btn btn-outline-success" href="connexion.html">Connexion </a>
+          </ul>
+      </form>
   </div>
 </nav>
               </br>

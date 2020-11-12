@@ -75,7 +75,7 @@ public class CategVenteDAO {
         return unCategVente ;    
     }
      public static CategVente getRecupCategVente(Connection connection, String code){
-         CategVente unCategVente = new CategVente();
+         CategVente uneCategVente = new CategVente();
         try{
             
             
@@ -86,18 +86,18 @@ public class CategVenteDAO {
             //System.out.println("reqqqq  " +  requete);
             while ( rs.next() ) {  
                 //unCheval.setId(rs.getInt("id"));
-                unCategVente.setCode(rs.getString("code"));
-                unCategVente.setLibelle(rs.getString("libelle"));              
+                uneCategVente.setCode(rs.getString("code"));
+                uneCategVente.setLibelle(rs.getString("libelle"));              
                 //System.out.println("LIBBBB dans getRecupCheval"+ unCheval.getUnTypeCheval().getLibelle());
             }
-            System.out.println(unCategVente);
+            System.out.println(uneCategVente);
          }   
         catch (SQLException e) 
         {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
         }
-        return unCategVente;
+        return uneCategVente;
      }
 }
 

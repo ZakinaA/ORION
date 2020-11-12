@@ -38,7 +38,7 @@ public class LieuxDAO {
                 unLieu.setId(rs.getInt("id"));
                 unLieu.setVille(rs.getString("ville"));
                 unLieu.setNbBoxe(rs.getString("nbBoxes"));
-                unLieu.setCommentaire(rs.getString("commantaire"));
+                unLieu.setCommentaire(rs.getString("commentaire"));
                 
                 lesLieux.add(unLieu);
             }

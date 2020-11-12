@@ -255,4 +255,87 @@ public class VenteDAO {
         }
         return LesChevaux ;    
     }
+    
+    public static Vente ajouterVente(Connection connection, Vente uneVente){      
+        int idGenere = -1;
+        try
+        {
+           
+            requete=connection.prepareStatement("INSERT INTO vente (nom, dateDebut, codeCategVente, id_lieu)\n" + "VALUES (?,?,?,?)" , requete.RETURN_GENERATED_KEYS);
+            
+            requete.setString(1, uneVente.getNom());
+            requete.setString(2, uneVente.getDateDebutVente());
+            requete.setString(3, uneVente.getUneCategVente().getCode());
+            requete.setInt(4, uneVente.getUnLieu().getId());
+           
+
+            System.out.println("REQUETE " + requete);
+           /* Exécution de la requête */
+            int resultatRequete = requete.executeUpdate();
+                
+            
+            if (resultatRequete == 1){
+            rs = requete.getGeneratedKeys();
+            
+            
+            
+             // Récupération de id auto-généré par la bdd dans la table client
+
+            while ( rs.next() ) {
+                idGenere = rs.getInt( 1 );
+                uneVente.setId(idGenere);
+            }   
+            uneVente = getRecupVente(connection, uneVente.getId());
+            }
+            else{
+                uneVente = null;
+            }
+        }
+        
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+            uneVente=null;
+        }
+        return uneVente ;
+    }
+    
+    public static Vente getRecupVente(Connection connection, int idGenere){      
+        Vente uneVente = new Vente();
+        try
+        {
+            requete=connection.prepareStatement("select vente.id, vente.nom, vente.dateDebut, categvente.libelle, lieu.ville from vente, lieu , categvente where lieu.id=vente.id_lieu and categvente.code = vente.codeCategVente and vente.id = ? ");
+            requete.setInt(1, idGenere);
+            rs=requete.executeQuery();
+            
+           // System.out.println("reqqqq  " +  requete);
+           while (rs.next() ){
+               
+               uneVente.setNom(rs.getString("Nom"));
+               uneVente.setDateDebutVente(rs.getString("dateDebut"));
+               
+               CategVente uneCateg = new CategVente(); 
+               uneCateg.setLibelle(rs.getString("libelle"));
+               uneVente.setUneCategVente(uneCateg);
+
+                Lieux unLieu = new Lieux();
+                unLieu.setVille(rs.getString("ville"));
+                uneVente.setUnLieu(unLieu);
+   
+           }    
+
+
+
+           /* Exécution de la requête */
+            requete.executeUpdate();
+             
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return uneVente ;    
+    }
 }

@@ -1,23 +1,18 @@
 <%-- 
-    Document   : listerLesLots
-    Created on : 22 sept. 2020, 08:49:21
+    Document   : consulterVente
+    Created on : 5 nov. 2020, 15:19:19
     Author     : sio2
 --%>
 
-<%@page import="modele.Lot"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
-    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Liste des lots </title>
+        <title>Ajouter vente</title>
     </head>
-    
     <body>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -57,53 +52,21 @@
       </form>
   </div>
 </nav>
-        </br>
-        <h1>LISTE DES Lots</h1>
+         <h1>Infos Vente</h1>
+        
          <%
-        ArrayList<Lot> lesLots = (ArrayList)request.getAttribute("pLesLots");
+        Vente uneVente = (Vente)request.getAttribute("pVente");
         %>
-        <table  class="table table-bordered table-striped table-condensed">  
-            <thead>
-                <tr>             
-                    <th>id</th>
-                    <th>Prix de depart</th> 
-                    <th>Nom du cheval</th>
-            <br>
-            <br>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <%
-                    for(int i = 0; i < lesLots.size();i++)
-                    {
-                        
-                        Lot unLot = lesLots.get(i);
-                        out.println("<tr><td>");
-                        out.println(unLot.getId());
-                        out.println("</a></td>");
+        
+        
+         <table class="table table-bordered table-striped table-condensed">
+            
+            <tr><td>NOM :</td><td><%  out.println(uneVente.getNom());%></td>  </tr>
+            <tr><td>DATE DEBUT  :</td><td><%  out.println(uneVente.getDateDebutVente());%></td>  </tr>
+            <tr><td>CATEGORIE VENTE  :</td><td><%  out.println(uneVente.getUneCategVente().getLibelle());%></td>  </tr>
+            <tr><td>LIEU  :</td><td><%  out.println(uneVente.getUnLieux().getVille());%></td>  </tr>
 
-                        out.println("<td>");
-                        out.println(unLot.getPrixDepart());
-                        out.println("</td>");
-                        
-                        out.println("<td>");
-                        out.println(unLot.getUnCheval().getNom());
-                        out.println("</td>");
-                        
-                        out.println("<td><a href ='../ServletVentes/listerLesChevaux?codeLot="+ unLot.getId()+ "'>");
-                        out.println("Liste d'information sur le cheval");
-                        out.println("</td>");
-                        
-                    }
-                    %>
-                </tr>
-            </tbody>
+              </td></tr>
         </table>
     </body>
 </html>
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
