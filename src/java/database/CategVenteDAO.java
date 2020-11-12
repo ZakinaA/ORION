@@ -5,14 +5,12 @@
  */
 package database;
 
-import static database.ClientDAO.requete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modele.CategVente;
-import modele.Client;
 /**
  *
  * @author Zakina
@@ -57,12 +55,12 @@ public class CategVenteDAO {
                     "VALUES (?,?)");
             requete.setString(1, unCategVente.getCode());
             requete.setString(2, unCategVente.getLibelle());
-            System.out.println(requete);
+            //System.out.println(requete);
             /* Exécution de la requête */
             int resultatREQ = requete.executeUpdate();
-            System.out.println(resultatREQ + " RESDHCXSB ");
+            //System.out.println(resultatREQ + " RESDHCXSB ");
             if (resultatREQ == 1){
-                unCategVente = getRecupCategVente(connection);
+                unCategVente = getRecupCategVente(connection, unCategVente.getCode());
             }
             else{
                 unCategVente = null;
@@ -76,12 +74,13 @@ public class CategVenteDAO {
         }
         return unCategVente ;    
     }
-     public static CategVente getRecupCategVente(Connection connection){
+     public static CategVente getRecupCategVente(Connection connection, String code){
          CategVente unCategVente = new CategVente();
         try{
             
             
             requete=connection.prepareStatement("SELECT c.* FROM categvente c WHERE c.code = ?");
+            requete.setString(1, code);
             rs=requete.executeQuery();
             
             //System.out.println("reqqqq  " +  requete);

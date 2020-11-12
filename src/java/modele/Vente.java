@@ -15,7 +15,7 @@ public class Vente {
     private int id;
     private String nom;
     private String dateDebutVente;
-    private Lieu unLieu ;
+    private Lieux unLieu ;
     private CategVente uneCategVente;
     ArrayList<Lot> listeLot;
     ArrayList<Courriel> lesCourriels;
@@ -30,7 +30,7 @@ public class Vente {
         this.dateDebutVente = dateDebutVente;
     }
 
-    public Vente(int id, String nom, String dateDebutVente, Lieu unLieu, CategVente uneCategVente) {
+    public Vente(int id, String nom, String dateDebutVente, Lieux unLieu, CategVente uneCategVente) {
         this.id = id;
         this.nom = nom;
         this.dateDebutVente = dateDebutVente;
@@ -38,7 +38,7 @@ public class Vente {
         this.uneCategVente = uneCategVente;
     }
 
-    public Vente(int id, String nom, String dateDebutVente, Lieu unLieu, CategVente uneCategVente, ArrayList<Lot> listeLot) {
+    public Vente(int id, String nom, String dateDebutVente, Lieux unLieu, CategVente uneCategVente, ArrayList<Lot> listeLot) {
         this.id = id;
         this.nom = nom;
         this.dateDebutVente = dateDebutVente;
@@ -80,11 +80,11 @@ public class Vente {
         this.uneCategVente = uneCategVente;
     }
 
-    public Lieu getUnLieu() {
+    public Lieux getUnLieu() {
         return unLieu;
     }
 
-    public void setUnLieu(Lieu unLieu) {
+    public void setUnLieu(Lieux unLieu) {
         this.unLieu = unLieu;
     }
 

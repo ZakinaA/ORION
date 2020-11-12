@@ -1,10 +1,9 @@
 <%-- 
-    Document   : paysAjouter
-    Created on : 15 oct. 2020, 09:02:15
+    Document   : lieuxAjouter
+    Created on : 5 nov. 2020, 13:21:42
     Author     : sio2
 --%>
-
-<%@page import="formulaires.PaysForm"%>
+<%@page import="formulaires.LieuxForm"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Ajout d'un pays</title>
+        <title>Ajouter un lieux</title>
     </head>
     <body>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -50,28 +49,33 @@
 </nav>
        </br>
        <div class="container">
-           <h1>Inscription Pays</h1>
+           <h1>Inscription Lieux</h1>
        </br>
        
          <%
-                PaysForm form = (PaysForm)request.getAttribute("form");
+                LieuxForm form = (LieuxForm)request.getAttribute("form");
             %>
         
-        <form class="form-group" action="ajouterPays" method="POST">
-                <label for="code">code : </label>
-                <input class="form-control" id="code"  type="text"  name="code" size="3" maxlength="3">      
+        <form class="form-group" action="ajouterLieux" method="POST">
+                <label for="ville">Ville : </label>
+                <input class="form-control" id="ville"  type="text"  name="ville" size="30" maxlength="30">      
                 </br>
-                <label for="nom">nom : </label>
-                <input class="form-control" id="nom"  type="text"  name="nom" size="30" maxlength="30">      
+                <label for="nbBoxes">Nombre de boxes : </label>
+                <input class="form-control" id="nbBoxes"  type="text"  name="nbBoxes" size="30" maxlength="30">      
                 </br>
-            <input class="btn btn-primary" type="Submit" name="valider" id="valider" value="Valider">
+                <label for="commentaire">Commentaire : </label>
+                <input class="form-control" id="commentaire"  type="text"  name="commentaire" size="30" maxlength="50">      
+                </br>
+            <input type="submit" name="valider" id="valider" value="Valider"/>
         </form>
        </div>
     </body>
 </html>
 
-
 <!-- JS, Popper.js, and jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    </body>
+</html>
