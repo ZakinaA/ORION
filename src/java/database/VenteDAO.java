@@ -338,4 +338,46 @@ public class VenteDAO {
         }
         return uneVente ;    
     }
+    
+    public static ArrayList<Vente>  getLesVentesVenir(Connection connection){      
+        ArrayList<Vente> lesVentes = new  ArrayList<Vente>();
+        try
+        {
+            //preparation de la requete 
+            //System.out.println("req avant" + requete);
+            //System.out.println("connection" + connection.toString());
+            requete=connection.prepareStatement("select distinct * from vente, categvente, lieu where codeCategVente=code and idLieu = lieu.id and dateDebut > CURDATE() order by dateDebut desc");          
+            //System.out.println("req apres" + requete);
+            //executer la requete
+            rs=requete.executeQuery();
+            
+            //On hydrate l'objet métier Client avec les résultats de la requête
+            while ( rs.next() ) {  
+                Vente uneVente = new Vente();
+                uneVente.setId(rs.getInt("id"));
+                uneVente.setNom(rs.getString("nom"));
+                uneVente.setDateDebutVente(rs.getString("dateDebut"));
+                
+               Lieux unLieu = new Lieux();
+               unLieu.setId(rs.getInt("id"));
+               unLieu.setVille(rs.getString("ville"));
+               unLieu.setNbBoxe(rs.getString("nbBoxes"));
+               
+               uneVente.setUnLieu(unLieu);
+               
+                CategVente uneCateg = new CategVente();
+                uneCateg.setCode(rs.getString("code"));  // on aurait aussi pu prendre CodeCateg
+                uneCateg.setLibelle(rs.getString("libelle"));
+                
+                uneVente.setUneCategVente(uneCateg);
+                
+                lesVentes.add(uneVente);
+            }
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return lesVentes ;    
+    }
 }

@@ -162,7 +162,14 @@ public class ServletVentes extends HttpServlet {
             request.setAttribute("pLesLieux", lesLieux);
             
             getServletContext().getRequestDispatcher("/vues/ventes/venteAjouter.jsp").forward(request, response);
-        } 
+        }
+         
+        if(url.equals("/Orion/ServletVentes/CalendrierVentes"))
+        {  
+            ArrayList<Vente> lesVentes = VenteDAO.getLesVentesVenir(connection);
+            request.setAttribute("pLesVentes", lesVentes);
+            getServletContext().getRequestDispatcher("/vues/ventes/CalendrierVentes.jsp").forward(request, response);
+        }
     }
 
     /**

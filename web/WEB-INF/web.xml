@@ -80,6 +80,10 @@
             <url-pattern>/ServletVentes/ajouterVente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletVentes</servlet-name>
+            <url-pattern>/ServletVentes/CalendrierVentes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletClient</servlet-name>
         <url-pattern>/ServletClient/ajouterClient</url-pattern>
     </servlet-mapping>
