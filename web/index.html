@@ -1,11 +1,6 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
 <head>
 
   <meta charset="utf-8">
@@ -36,7 +31,6 @@ and open the template in the editor.
   <a class="navbar-brand" href="#">
       <img src="img/Logo2.png" alt="logo cheval" height="30" width="30">
           Equida</a>
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -58,35 +52,13 @@ and open the template in the editor.
           <a class="dropdown-item" href="ServletCheval/ajouterCheval">Ajouter Cheval</a>
           <a class="dropdown-item" href="ServletAdmin/ajouterTypeCheval">Ajouter Type Cheval</a>
           <a class="dropdown-item" href="ServletAdmin/ajouterCategVente">Ajouter Catégorie</a>
-
-           
           <a class="dropdown-item" href="ServletAdmin/ajouterPays">Ajouter Pays</a>
+          <a class="dropdown-item" href="ServletAdmin/ajouterLieux">Ajouter Lieux</a>
         </div>
       </li>
     </ul>
-      
-      <form class="form-inline my-2 my-lg-0">
-      <ul class="form-inline my-2 my-lg-0">
-       <a type="button" class="btn btn-outline-primary" href="inscription.html">S'inscrire </a> &nbsp;
-       <a type="button" class="btn btn-outline-success" href="connexion.html">Connexion </a>
-       
-      </ul>
-      
-     
-      
-   
-      
   </div>
 </nav>
-
-        
-       <!--
-        <div>PAGE D'ACCUEIL EQUIDA - A EMBELLIR</div>
-        <a href="/Orion/ServletVentes/listerLesVentes"> Les Ventes</a><br>
-        <a href="/Orion/ServletClient/ajouterClient"> Ajout Client</a><br>
-        <a href="/Orion/ServletCheval/ajouterCheval"> Ajout Cheval</a><br>
-        <a href="/Orion/ServletAdmin/ajouterCategVente"> Ajout Categorie</a><br>-->
-
 
   <!-- Masthead -->
   <header class="masthead text-white text-center">
@@ -158,7 +130,9 @@ and open the template in the editor.
           <h2>Calendrier des ventes</h2>
           <p class="lead mb-0">Le calendrier des ventes contient toutes les ventes déjà prévues et pour chacune montre le type de vente (élevage, mixte, ...) et le lieu.</p>
           <br><br><br>
-          <button class="btBleu" style="display: block; margin : auto; " onclick="window.location.href = 'ServletVentes/listerLesVentes';">Consulter</button> <!-- Plus tard changer pour un vrai calendrier -->
+
+          <button class="btBleu" style="display: block; margin : auto; " onclick="window.location.href = 'ServletVentes/CalendrierVentes';">Consulter</button>
+
         </div>
       </div>
       <div class="row no-gutters">
@@ -211,19 +185,19 @@ and open the template in the editor.
         <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
           <ul class="list-inline mb-2">
             <li class="list-inline-item">
-              <a href="A_propos.html">A propos</a>
+              <a href="#">A propos</a>
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
-              <a href="contact.html">Contact</a>
+              <a href="#">Contact</a>
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
-              <a href="condition.html">Conditions d'utilisation</a>
+              <a href="#">Conditions d'utilisation</a>
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
-              <a href="RGPD.html">RGPD</a>
+              <a href="#">RGPD</a>
             </li>
           </ul>
           <p class="text-muted small mb-4 mb-lg-0">&copy; Equida 2020 | CLEMENT Hugo - ADALA Yanis - DUPREZ Valentine <br> Lycée Jean Rostand, Caen - BTS SIO 2020-2021.</p>
@@ -232,6 +206,8 @@ and open the template in the editor.
       </div>
     </div>
   </footer>
+    </body>
+</html>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
