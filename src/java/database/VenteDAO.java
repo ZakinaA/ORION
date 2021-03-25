@@ -87,6 +87,54 @@ public class VenteDAO {
     /* Pour chaque client, on récupère aussi le nom de son pays
     /* La liste des clients est stockée dans une ArrayList
     */
+    
+    public static ArrayList<Vente>  getLesVentesVenir(Connection connection){      
+        ArrayList<Vente> lesVentes = new  ArrayList<Vente>();
+        try
+        {
+            //preparation de la requete 
+            //System.out.println("req avant" + requete);
+            //System.out.println("connection" + connection.toString());
+            requete=connection.prepareStatement("select distinct * from vente, categvente, lieu where codeCategVente=code and idLieu = lieu.id and dateDebut > CURDATE() order by dateDebut desc");          
+            //System.out.println("req apres" + requete);
+            //executer la requete
+            rs=requete.executeQuery();
+            
+            //On hydrate l'objet métier Client avec les résultats de la requête
+            while ( rs.next() ) {  
+                Vente uneVente = new Vente();
+                uneVente.setId(rs.getInt("id"));
+                uneVente.setNom(rs.getString("nom"));
+                uneVente.setDateDebutVente(rs.getString("dateDebut"));
+                
+               Lieux unLieu = new Lieux();
+               unLieu.setId(rs.getInt("id"));
+               unLieu.setVille(rs.getString("ville"));
+               unLieu.setNbBoxe(rs.getString("nbBoxes"));
+               
+               uneVente.setUnLieu(unLieu);
+               
+                CategVente uneCateg = new CategVente();
+                uneCateg.setCode(rs.getString("code"));  // on aurait aussi pu prendre CodeCateg
+                uneCateg.setLibelle(rs.getString("libelle"));
+                
+                uneVente.setUneCategVente(uneCateg);
+                
+                lesVentes.add(uneVente);
+            }
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return lesVentes ;    
+    } 
+    
+    /* @author Zakina - 22/06/2017
+    /* Méthode permettant de lister les clients interessés par la catégorie de la vente selectionnée (passée en paramètre de la méthode)
+    /* Pour chaque client, on récupère aussi le nom de son pays
+    /* La liste des clients est stockée dans une ArrayList
+    */
     public static ArrayList<Client>  getLesClients(Connection connection, String codeCateg){      
         ArrayList<Client> lesClients = new  ArrayList<Client>();
         try
@@ -209,7 +257,7 @@ public class VenteDAO {
         {
             //preparation de la requete     
             //codeVen="210817";
-            requete=connection.prepareStatement("SELECT c1.id, c1.nom, c1.sexe, c1.numSire, c1.idTypeCheval, c2.nom as PereCheval, c3.nom as MereCheval, t.libelle, client.nom as NomProp, client.prenom as PrenomProp FROM cheval as c1, lot l, typecheval t, cheval c2, cheval c3, client WHERE c1.pere = c2.id and c1.mere = c3.id and l.idCheval = c1.id and c1.idTypeCheval = t.id and client.id = c1.idClient and l.id = ? ");
+            requete=connection.prepareStatement("SELECT c1.id, c1.nom, c1.sexe, c1.numSire, c1.idTypeCheval, c2.nom as PereCheval, c3.nom as MereCheval, t.libelle, client.nom as NomProp, client.prenom as PrenomProp, c1.image FROM cheval as c1, lot l, typecheval t, cheval c2, cheval c3, client WHERE c1.pere = c2.id and c1.mere = c3.id and l.idCheval = c1.id and c1.idTypeCheval = t.id and client.id = c1.idClient and l.id = ? ");
             requete.setString(1, codeLot);
             //executer la requete
             System.out.println(requete);
@@ -225,6 +273,7 @@ public class VenteDAO {
                 unCheval.setNom(rs.getString("nom"));
                 unCheval.setSexe(rs.getString("sexe"));
                 unCheval.setNumSire(rs.getString("numSire"));
+                unCheval.setImage(rs.getString("image"));
                 
                 
                 TypeCheval unTypeCheval = new TypeCheval();
